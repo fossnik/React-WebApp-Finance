@@ -8,7 +8,7 @@ Applied Technologies
 - [SQLite](#sqlite)
 
 Data Source
-- [Yahoo! Finance](#Yahoo Finance)
+- [Yahoo Finance](#YahooFinance)
 
 ## React
 `React` is a JavaScript library developed for creating responsive user interfaces.
@@ -25,6 +25,6 @@ I made use of selenium in this project to scrape the dynamic contents of a table
 `SQLite` is a relational database management system in the style of SQL. This project utilizes an SQLite database which is populated by my [selenium webscraper](https://github.com/fossnik/SeleniumScraper)
 
 
-# Yahoo Finance
+# YahooFinance
 [Yahoo! Finance](finance.yahoo.com) is a free web service and portfolio management resource that I chose as the source of my selenium web scraping data. It is public and reliable, although their implementation has tended to mutate on occasion.
 The particular endpoint I utilize is (https://finance.yahoo.com/cryptocurrencies)
