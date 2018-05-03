@@ -14,11 +14,11 @@ const CoinMenuList = (props) => {
 				</tr>
 				</thead>
 				<tbody className="Table-body">
-				{result.map(coin => (
-					<tr key={coin}>
+				{result.map(snapshot => (
+					<tr key={snapshot.ID}>
 						<td>
 							<span>
-								<a href={coin}>{coin}</a>
+								<a href={snapshot.ID}>{snapshot.dateCreated}</a>
 							</span>
 						</td>
 					</tr>
