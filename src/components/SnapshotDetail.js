@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import '../common/Table.css'
 
-const CoinMenuList = (props) => {
-	const { result } = props;
+const SnapshotDetail = (props) => {
+	const coin = props.result.details;
 
 	return (
 		<div className="Table-container">
@@ -25,7 +25,6 @@ const CoinMenuList = (props) => {
 				</tr>
 				</thead>
 				<tbody className="Table-body">
-				{result.map(coin => (
 					<tr key={coin.MarketID}>
 						<td><span>{coin.ID}</span></td>
 						<td><span>{coin.dateCreated}</span></td>
@@ -40,15 +39,14 @@ const CoinMenuList = (props) => {
 						<td><span>{coin.totalVolume24h}</span></td>
 						<td><span>{coin.circulatingSupply}</span></td>
 					</tr>
-				))}
 				</tbody>
 			</table>
 		</div>
 	)
 };
 
-CoinMenuList.propTypes = {
-	result: PropTypes.array.isRequired,
+SnapshotDetail.propTypes = {
+	result: PropTypes.object.isRequired,
 };
 
-export default CoinMenuList
+export default SnapshotDetail

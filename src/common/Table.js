@@ -68,9 +68,9 @@ class Table extends React.Component {
 	}
 
 	snapshotSelectHandler(event) {
-		console.log(event.target.innerText,this.state.resultSecond)
-		const snapId = this.state.resultSecond[1]
-		// event.target.innerText;
+		let snapId = 1;
+
+		console.log("snapID: ", snapId);
 		this.setState({
 			snapId: snapId,
 			action: this.callApi({
