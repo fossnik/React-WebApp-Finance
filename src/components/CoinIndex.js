@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import '../common/Table.css'
+import SnapshotIndex from "./SnapshotIndex";
 
 export default class CoinIndex extends Component {
 	render() {
@@ -29,4 +31,8 @@ export default class CoinIndex extends Component {
 			return <div/>;
 		}
 	}
+};
+
+SnapshotIndex.propTypes = {
+	result: PropTypes.object.isRequired,
 };
