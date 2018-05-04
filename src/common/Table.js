@@ -9,81 +9,97 @@ class Table extends React.Component {
 		super();
 
 		this.state = {
-			view: 'coinIndex',
 			coin: null,
 			snapId: null,
-			result: []
-		}
-		this.callDetailView = this.callDetailView.bind(this);
-		this.callSnapshotIndex = this.callSnapshotIndex.bind(this);
-		this.callCoinIndex = this.callCoinIndex.bind(this);
-	}
+			resultFirst: null,
+			resultSecond: null,
+			resultThird: null
+		};
 
+		this.callApi = this.callApi.bind(this);
+		this.coinSelectHandler = this.coinSelectHandler.bind(this);
+		this.snapshotSelectHandler = this.snapshotSelectHandler.bind(this);
+	}
+	
 	componentDidMount() {
-		if (this.state.snapId != null && this.state.coin != null)
-			this.callDetailView();
-		else if (this.state.coin != null)
-			this.callSnapshotIndex();
-		else
-			this.callCoinIndex();
+		this.callApi({})
 	}
 
-	callCoinIndex() {
-		fetch(API_URL)
+	callApi(endpoint) {
+		let url = API_URL;
+
+		try {
+			if (endpoint.coin)
+				url += endpoint.coin;
+
+			if (endpoint.snapId)
+				url += "/" + endpoint.snapId;
+		}
+		catch(e) {
+			console.log(e)
+		}
+
+		console.log(url);
+
+		fetch(url)
 			.then((response) => response.json().then(json => {
 				return response.ok ? json : Promise.reject(json);
 			}))
 			.then((response) => {
-				this.setState({result: response.names});
+				if (endpoint.snapId)
+					this.setState({resultThird: response});
+
+				else if (endpoint.coin)
+					this.setState({resultSecond: response});
+
+				else
+					this.setState({resultFirst: response});
 			})
 			.catch(error => {
 				console.log("Could not Load from API\n" + error);
-			})
+			});
 	}
 
-	callSnapshotIndex() {
-		fetch(`${API_URL}/${this.state.coin}`)
-			.then((response) => response.json().then(json => {
-				return response.ok ? json : Promise.reject(json);
-			}))
-			.then((response) => {
-				this.setState({
-					result: response,
-				})
-			})
-			.catch(error => {
-				console.log("Could not Load from API\n" + error);
-			})
+	coinSelectHandler(event) {
+		this.setState({
+			coin: event.target.innerText,
+			action: this.callApi({coin: event.target.innerText})
+		})
 	}
 
-	callDetailView() {
-		fetch(`${API_URL}/${this.state.coin}/${this.state.snapid}`)
-			.then((response) => response.json().then(json => {
-				return response.ok ? json : Promise.reject(json);
-			}))
-			.then((response) => {
-				this.setState({
-					result: response,
-				})
+	snapshotSelectHandler(event) {
+		console.log(event.target.innerText,this.state.resultSecond)
+		const snapId = this.state.resultSecond[1]
+		// event.target.innerText;
+		this.setState({
+			snapId: snapId,
+			action: this.callApi({
+				coin: this.state.coin,
+				snapId: snapId
 			})
-			.catch(error => {
-				console.log("Could not Load from API\n" + error);
-			})
+		})
 	}
 
 	render() {
-		switch (this.state.view) {
-			case 'coinIndex':
-				console.log(this.state)
-				return <CoinIndex result={this.state.result}/>;
-			case 'snapshotIndex':
-				return <SnapshotIndex coin={this.state.coin}/>;
-			case 'detailView':
-				return <SnapshotDetail snapId={this.state.snapId} coin={this.state.coin}/>;
-			default:
-				console.error("Invalid View Parameter");
-				break;
-		}
+		if (this.state.resultThird)
+			return <SnapshotDetail
+				result={this.state.resultThird}
+			/>;
+
+		else if (this.state.resultSecond)
+			return <SnapshotIndex
+				result={this.state.resultSecond}
+				action={this.snapshotSelectHandler}
+			/>;
+
+		else if (this.state.resultFirst)
+			return <CoinIndex
+				result={this.state.resultFirst}
+				action={this.coinSelectHandler}
+			/>;
+
+		else
+			return <div>Loading...</div>
 	}
 }
 
