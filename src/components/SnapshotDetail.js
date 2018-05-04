@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import '../../common/Table.css'
+import '../common/Table.css'
 
 const CoinMenuList = (props) => {
 	const { result } = props;

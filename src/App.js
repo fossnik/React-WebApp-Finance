@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CoinMenu from './components/CoinIndex/CoinMenu'
+import Table from './common/Table'
 
 class App extends Component {
   render() {
@@ -12,7 +12,7 @@ class App extends Component {
           <h1 className="App-title">React Finance</h1>
           <h4 className="App-subtitle">Interface for Yahoo! Finance Web-Scraped Data</h4>
         </header>
-		<CoinMenu/>
+	  <Table/>
       </div>
     );
   }
