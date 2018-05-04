@@ -68,9 +68,9 @@ class Table extends React.Component {
 	}
 
 	snapshotSelectHandler(event) {
-		let snapId = 1;
+		const re = new RegExp(/(?<=<span snapid=")(.*)(?=">)/);
+		const snapId = re.exec(event.target.outerHTML)[0];
 
-		console.log("snapID: ", snapId);
 		this.setState({
 			snapId: snapId,
 			action: this.callApi({

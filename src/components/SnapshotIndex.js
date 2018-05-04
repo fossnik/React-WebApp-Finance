@@ -21,7 +21,9 @@ class SnapshotIndex extends Component {
 							onClick={this.props.action}
 						>
 							<td>
-								<span>{snapshot.dateCreated}</span>
+								<span snapid={snapshot.ID}>
+									{snapshot.dateCreated}
+								</span>
 							</td>
 						</tr>
 					))}
