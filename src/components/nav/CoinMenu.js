@@ -20,7 +20,7 @@ const CoinMenu = (props) => {
 };
 
 CoinMenu.propTypes = {
-	coin: PropTypes.object.isRequired,
+	coin: PropTypes.string.isRequired,
 	resultFirst: PropTypes.object.isRequired,
 };
 
