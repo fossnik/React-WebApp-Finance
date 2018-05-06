@@ -29,18 +29,13 @@ export default class App extends Component {
 	callApi(endpoint) {
 		let url = API_URL;
 
-		try {
-			if (endpoint.coin)
-				url += endpoint.coin;
+		if (endpoint.coin)
+			url += endpoint.coin;
 
-			if (endpoint.snapId)
-				url += "/" + endpoint.snapId;
-		}
-		catch(e) {
-			console.log(e)
-		}
+		if (endpoint.snapId)
+			url += "/" + endpoint.snapId;
 
-		console.log(url);
+		console.log("Fetch: " + url);
 
 		fetch(url)
 			.then((response) => response.json().then(json => {
@@ -62,9 +57,14 @@ export default class App extends Component {
 	}
 
 	coinSelectHandler(event) {
+		const coin = event.target.innerText;
+
 		this.setState({
-			coin: event.target.innerText,
-			action: this.callApi({coin: event.target.innerText})
+			coin: coin,
+			action: this.callApi({
+				coin: coin,
+				snapId: null
+			})
 		})
 	}
 
@@ -88,7 +88,9 @@ export default class App extends Component {
 					<img src={logo} className="App-logo" alt="logo" />
 					<h1 className="App-title">Yz Finance</h1>
 					<h4 className="App-subtitle">Interface for Yahoo! Finance Web-Scraped Data</h4>
-					<NaviBar/>
+					<NaviBar
+						state={this.state}
+					/>
 				</header>
 				<Table
 					resultFirst={this.state.resultFirst}
