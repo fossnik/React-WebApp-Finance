@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import '../common/Table.css'
+import '../../common/Table.css'
 
-class SnapshotIndex extends Component {
+export default class SnapshotIndex extends Component {
 	render() {
-		const {result} = this.props;
+		const { result, action } = this.props;
 
 		return (
 			<div className="Table-container">
@@ -18,7 +18,7 @@ class SnapshotIndex extends Component {
 					{result.snaps.map(snapshot => (
 						<tr
 							key={snapshot.ID}
-							onClick={this.props.action}
+							onClick={action}
 						>
 							<td>
 								<span snapid={snapshot.ID}>
@@ -37,5 +37,3 @@ class SnapshotIndex extends Component {
 SnapshotIndex.propTypes = {
 	result: PropTypes.object.isRequired,
 };
-
-export default SnapshotIndex

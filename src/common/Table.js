@@ -1,101 +1,34 @@
-import React from 'react'
-import { API_URL } from '../config'
-import CoinIndex from '../components/CoinIndex'
-import SnapshotIndex from '../components/SnapshotIndex'
-import SnapshotDetail from '../components/SnapshotDetail'
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import CoinIndex from '../components/tables/CoinIndex'
+import SnapshotIndex from '../components/tables/SnapshotIndex'
+import SnapshotDetail from '../components/tables/SnapshotDetail'
 
-class Table extends React.Component {
-	constructor() {
-		super();
-
-		this.state = {
-			coin: null,
-			snapId: null,
-			resultFirst: null,
-			resultSecond: null,
-			resultThird: null
-		};
-
-		this.callApi = this.callApi.bind(this);
-		this.coinSelectHandler = this.coinSelectHandler.bind(this);
-		this.snapshotSelectHandler = this.snapshotSelectHandler.bind(this);
-	}
-	
-	componentDidMount() {
-		this.callApi({})
-	}
-
-	callApi(endpoint) {
-		let url = API_URL;
-
-		try {
-			if (endpoint.coin)
-				url += endpoint.coin;
-
-			if (endpoint.snapId)
-				url += "/" + endpoint.snapId;
-		}
-		catch(e) {
-			console.log(e)
-		}
-
-		console.log(url);
-
-		fetch(url)
-			.then((response) => response.json().then(json => {
-				return response.ok ? json : Promise.reject(json);
-			}))
-			.then((response) => {
-				if (endpoint.snapId)
-					this.setState({resultThird: response});
-
-				else if (endpoint.coin)
-					this.setState({resultSecond: response});
-
-				else
-					this.setState({resultFirst: response});
-			})
-			.catch(error => {
-				console.log("Could not Load from API\n" + error);
-			});
-	}
-
-	coinSelectHandler(event) {
-		this.setState({
-			coin: event.target.innerText,
-			action: this.callApi({coin: event.target.innerText})
-		})
-	}
-
-	snapshotSelectHandler(event) {
-		const re = new RegExp(/(?<=<span snapid=")(.*)(?=">)/);
-		const snapId = re.exec(event.target.outerHTML)[0];
-
-		this.setState({
-			snapId: snapId,
-			action: this.callApi({
-				coin: this.state.coin,
-				snapId: snapId
-			})
-		})
-	}
-
+export default class Table extends Component {
 	render() {
-		if (this.state.resultThird)
+		const {
+			coinSelectHandler,
+			snapshotSelectHandler,
+			resultFirst,
+			resultSecond,
+			resultThird,
+		} = this.props;
+
+		if (resultThird)
 			return <SnapshotDetail
-				result={this.state.resultThird}
+				result={resultThird}
 			/>;
 
-		else if (this.state.resultSecond)
+		else if (resultSecond)
 			return <SnapshotIndex
-				result={this.state.resultSecond}
-				action={this.snapshotSelectHandler}
+				result={resultSecond}
+				action={snapshotSelectHandler}
 			/>;
 
-		else if (this.state.resultFirst)
+		else if (resultFirst)
 			return <CoinIndex
-				result={this.state.resultFirst}
-				action={this.coinSelectHandler}
+				result={resultFirst}
+				action={coinSelectHandler}
 			/>;
 
 		else
@@ -103,4 +36,10 @@ class Table extends React.Component {
 	}
 }
 
-export default Table
+Table.propTypes = {
+	coinSelectHandler: PropTypes.func.isRequired,
+	snapshotSelectHandler: PropTypes.func.isRequired,
+	resultFirst: PropTypes.object.isRequired,
+	resultSecond: PropTypes.object,
+	resultThird: PropTypes.object,
+};

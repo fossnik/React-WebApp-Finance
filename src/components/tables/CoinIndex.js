@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import '../common/Table.css'
+import '../../common/Table.css'
 
 export default class CoinIndex extends Component {
 	render() {
