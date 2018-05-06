@@ -1,0 +1,10 @@
+.NaviBar-form {
+	width: 160px;
+	display: flex;
+	flex-direction: column;
+}
+
+.NaviBar-element {
+	align-self: auto;
+	margin: 2px;
+}

@@ -7,11 +7,11 @@ const SnapMenu = (props) => {
 	if (resultSecond)
 		return <select name="snapId">
 			{
-				resultSecond.snaps.map((snap) => {
+				resultSecond.snaps.map((snap, i) => {
 					if (snap.ID === snapId)
-						return <option selected value={snap.ID}>{snap.dateCreated}</option>;
+						return <option key={i} selected value={snap.ID}>{snap.dateCreated}</option>;
 					else
-						return <option value={snap.ID}>{snap.dateCreated}</option>;
+						return <option key={i} value={snap.ID}>{snap.dateCreated}</option>;
 				})
 			}
 		</select>;

@@ -7,11 +7,11 @@ const CoinMenu = (props) => {
 	if (resultFirst)
 		return <select name="coin">
 			{
-				resultFirst.names.map((coinName) => {
+				resultFirst.names.map((coinName, i) => {
 					if (coinName === coin)
-						return <option selected value={coinName}>{coinName}</option>;
+						return <option key={i} selected value={coinName}>{coinName}</option>;
 					else
-						return <option value={coinName}>{coinName}</option>;
+						return <option key={i} value={coinName}>{coinName}</option>;
 				})
 			}
 		</select>;
