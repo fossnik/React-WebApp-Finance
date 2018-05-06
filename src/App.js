@@ -82,16 +82,14 @@ export default class App extends Component {
 	}
 
 	render() {
-		return (
-			<div className="App">
-				<header className="App-header">
-					<div>
-						<h1 className="App-title">Yz Finance</h1>
-						<img src={logo} className="App-logo" alt="logo" />
-						<h4 className="App-subtitle">Interface for Yahoo! Finance Web-Scraped Data</h4>
-					</div>
-					<NaviBar state={this.state} />
-				</header>
+		return <div className="App">
+			<header className="App-header">
+				<h1 className="App-title">Yz Finance</h1>
+				<img src={logo} className="App-logo" alt="logo"/>
+				<NaviBar state={this.state}/>
+			</header>
+			<div>
+				<h4 className="App-subtitle">Interface for Yahoo! Finance Web-Scraped Data</h4>
 				<Table
 					resultFirst={this.state.resultFirst}
 					resultSecond={this.state.resultSecond}
@@ -100,6 +98,6 @@ export default class App extends Component {
 					snapshotSelectHandler={this.snapshotSelectHandler}
 				/>
 			</div>
-		);
+		</div>;
 	}
 }

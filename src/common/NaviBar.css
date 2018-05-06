@@ -2,6 +2,10 @@
 	width: 160px;
 	display: flex;
 	flex-direction: column;
+	padding: 10px;
+	background-color: #003301;
+	position: relative;
+	margin-top: -100px;
 }
 
 .NaviBar-element {
