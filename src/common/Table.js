@@ -39,7 +39,7 @@ export default class Table extends Component {
 Table.propTypes = {
 	coinSelectHandler: PropTypes.func.isRequired,
 	snapshotSelectHandler: PropTypes.func.isRequired,
-	resultFirst: PropTypes.object.isRequired,
+	resultFirst: PropTypes.object,
 	resultSecond: PropTypes.object,
 	resultThird: PropTypes.object,
 };

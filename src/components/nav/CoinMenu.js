@@ -16,12 +16,12 @@ const CoinMenu = (props) => {
 			}
 		</select>;
 	else
-		return <select/>
+		return <div/>
 };
 
 CoinMenu.propTypes = {
-	coin: PropTypes.string.isRequired,
-	resultFirst: PropTypes.object.isRequired,
+	coin: PropTypes.string,
+	resultFirst: PropTypes.object,
 };
 
 export default CoinMenu

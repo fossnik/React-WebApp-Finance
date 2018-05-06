@@ -16,12 +16,12 @@ const SnapMenu = (props) => {
 			}
 		</select>;
 	else
-		return <select/>
+		return <div/>
 };
 
 SnapMenu.propTypes = {
-	snapId: PropTypes.string.isRequired,
-	resultSecond: PropTypes.object.isRequired,
+	snapId: PropTypes.string,
+	resultSecond: PropTypes.object,
 };
 
 export default SnapMenu
