@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import Table from './common/Table'
+import NaviBar from './components/NaviBar'
 import { API_URL } from './config'
 
 export default class App extends Component {
@@ -85,8 +86,9 @@ export default class App extends Component {
 			<div className="App">
 				<header className="App-header">
 					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">React Finance</h1>
+					<h1 className="App-title">Yz Finance</h1>
 					<h4 className="App-subtitle">Interface for Yahoo! Finance Web-Scraped Data</h4>
+					<NaviBar/>
 				</header>
 				<Table
 					resultFirst={this.state.resultFirst}
