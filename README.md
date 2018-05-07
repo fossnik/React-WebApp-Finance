@@ -20,41 +20,43 @@
 
 ## JavaScript Frameworks
 ### [Node.js](https://www.nodejs.org)
-`Node.JS` is an open-source, cross-platform JavaScript run-time environment that executes JavaScript code server-side. I elected to build a project around the Node.js framework because it is a highly versatile open-source framework that is wildly popular and one of the most in-demand technologies in IT today. 
+`Node.JS` is a cross-platform JavaScript run-time environment that executes JS code server-side. I elected to build a project around the Node.js framework because it is versatile and extremely popular, being supported by a large open-source community, and is presently one of the hottest technologies in the web development universe.
 
 ### [Express.js](https://www.reactjs.org)
 `Express.js` is a minimalist Node.js framework for web applications. It is used here for serving JSON objects at the API endpoints.
 
 ### [React.js](https://www.reactjs.org)
-`React.js` is a JavaScript library developed for creating responsive user interfaces.
-React makes use of compositable components to allow for painless development of robust web applications that are highly responsive and configurable.
+`React.js` is a JavaScript library for creating responsive user interfaces. Built atop the Node package system, React implements a design paradigm of discrete so-called 'compositable components' to aid development of robust web applications that avoid the pitfalls unwieldy monolithic and tightly-coupled codebases that rapidly become unmanageable. React also avails the `JSX syntax`, which conveniently resembles the structure of HTML while allowing developers to eschew the excessive verbosity of plain JavaScript.
 
 ## Web Scraping
 ### [Selenium](https://www.seleniumhq.org)
-`Selenium` is a web browser automation framework that makes it possible to interact with dynamic websites in a programmatic manner.
-This project uses [a webScraper](https://www.github.com/fossnik/SeleniumScraper) I created in Java to scrape the dynamic contents of a table from the [yahoo finance](https://finance.yahoo.com/cryptocurrencies)
-The generation of my SQLite database is performed by a Java Selenium webdriver.
+The actual web-scraping is achieved with the `Selenium` web browser automation framework, which makes it possible to interact with dynamic websites in a programmatic (and highly versatile) manner.
+A scraper I created in Java to fetch data from the dynamic contents of the [yahoo finance](https://finance.yahoo.com/cryptocurrencies) page is available in this [separate web-scraper project](https://www.github.com/fossnik/SeleniumScraper), which implements the Chrome WebDriver.
 
-### YahooFinance(finance.yahoo.com)
-`Yahoo! Finance` is a free web service and portfolio management resource that I chose as the source of my selenium web scraping data. It is public and reliable, although their implementation has tended to mutate on occasion.
-The particular endpoint I utilize is (https://finance.yahoo.com/cryptocurrencies)
+### [YahooFinance](finance.yahoo.com)
+`Yahoo! Finance` is a free web service and portfolio management resource from which the contents of the SQLite database are derived. It is public and reliable, although the implementation has tended to mutate on occasion. `finance.yahoo.com/cryptocurrencies`
 
 ## Database
 ### [SQLite](https://www.sqlite.org)
-`SQLite` is a relational database management system in the style of SQL.
+`SQLite` is an open-source relational database management system that is one of most popular among a myriad of competing SQL-style database products. Although these are largely interchangeable, SQLite does appear to be a favorite in the world of Java and JavaScript because of it's active development, strong user-base, and vital support community.
 
 ### [SQLite-jdbc](http://www.sqlitetutorial.net/sqlite-java/sqlite-jdbc-driver)
-This project utilizes the SQLite driver for the Java Database Connector (JDBC) to append records from my scraper to a durable database.
+The `SQLite-jdbc driver` for the Java Database Connector (JDBC) interfaces the Selenium web-scraper with the SQLite database in order to create a durable SQL database and append records.
 
 ### [node-sqlite3](http://www.sqlitetutorial.net/sqlite-nodejs)
-I used the [SQLite3 Node.js module](https://github.com/mapbox/node-sqlite3) to perform SQL queries in order to retrieve data from my SQLite database for display.
+The [SQLite3](https://github.com/mapbox/node-sqlite3) Node.js module facilitates retrieval of database records to be represented visually on the frontend side, via the Express.js API, which performs SQL queries on the SQLite database. 
 
 ## Hosting Environment
 ### [Linode](https://www.linode.com)
-Two node.js projects are hosted in a Linode container.
-This includes the Express.js project serving up API endpoints, and a React.js package to represent the queried data.
-I chose the least expensive service tier (1024MB RAM 4096GB HDD 1TB Data Cap).
+A `Linode container` is an affordable virtual GNU/Linux web server environment hosted in the cloud. 
+This project is hosted there in its entirety at the grand cost of only $5 per month.
+The two Node.js projects that comprise this interactive web application include the Express.js project serving up API endpoints, and a React.js package to represent the queried data.
+The least expensive service tier appears more than sufficient.
+ `Linux version 4.16.7-1-ARCH`
+ `1024MB RAM`
+ `4096GB HDD`
+ `1TB Data Cap`
 
-### [ArchLinux](https://www.archlinux.org)
-I elected to use ArchLinux for my Linode container because it is a very minimalist and efficient distro that I am already very familiar with.
-It is because ArchLinux is so bleeding-edge new that I resorted to using the [npm n](https://www.npmjs.com/package/n) version management to work with an older version of `Node.js` (version 9.11.1) than is provided by the Arch Linux package repository.
+### [Arch Linux](https://www.archlinux.org)
+I used Arch for my Linode container because it is a minimalist-oriented GNU/Linux distribution with a robust support community (and superb documentation).
+Arch Linux insists on early support of the most bleeding-edge new kernels and packages. This made it necessary to utilize Node's [npm n](https://www.npmjs.com/package/n) version management package to ensure compatibility with all the required packages of this project. In particular, the `node-sqlite3` package does not yet provide binaries ready for `Node.js (version 10.0)` (provided by the Arch Linux package repository). `n` allows for convenient access to the better-supported `Node.js (version 9.11.1)`.
