@@ -5,6 +5,7 @@ import About from './About'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+ReactDOM.render(startButton(), document.getElementById('startButton'));
 ReactDOM.render(homePage(), document.getElementById('root'));
 
 // app start button
@@ -13,8 +14,9 @@ document.getElementById('startButton').onclick = () => {
 };
 
 function homePage() {
-	return <div>
-		<button id="startButton" className="btn btn-primary btn-lg">Start</button>
-		<About/>
-	</div>
+	return <About/>
+}
+
+function startButton() {
+	return <button id="startButton" className="btn btn-primary btn-lg">Start</button>
 }
