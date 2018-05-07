@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import CoinMenu from '../components/nav/CoinMenu'
 import SnapMenu from '../components/nav/SnapMenu'
-import './NaviBar.css'
+import './NaviBox.css'
 
-export default class NaviBar extends Component {
+export default class NaviBox extends Component {
 	render() {
 		const {
 			coin,
@@ -13,9 +13,9 @@ export default class NaviBar extends Component {
 		} = this.props.state;
 
 		if (resultFirst)
-			return <form className='NaviBar-form'>
-				<CoinMenu className='NaviBar-element' coin={coin} resultFirst={resultFirst}/>
-				<SnapMenu className='NaviBar-element' snapId={snapId} resultSecond={resultSecond}/>
+			return <form className='NaviBox-form'>
+				<CoinMenu className='NaviBox-element' coin={coin} resultFirst={resultFirst}/>
+				<SnapMenu className='NaviBox-element' snapId={snapId} resultSecond={resultSecond}/>
 			</form>;
 		else
 			return <div/>
