@@ -12,7 +12,7 @@ export default class NaviBox extends Component {
 			resultSecond,
 		} = this.props.state;
 
-		if (resultFirst)
+		if (resultFirst && resultSecond)
 			return <form className='NaviBox-form'>
 				<CoinMenu className='NaviBox-element' coin={coin} resultFirst={resultFirst}/>
 				<SnapMenu className='NaviBox-element' snapId={snapId} resultSecond={resultSecond}/>
