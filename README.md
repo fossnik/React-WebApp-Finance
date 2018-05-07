@@ -1,6 +1,3 @@
-#yz (wise) FinanceScraper
-
-### Table of Contents
 
 #### JavaScript Frameworks
 - [Node.js](#node.js)
