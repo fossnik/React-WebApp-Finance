@@ -1,11 +1,10 @@
 .NaviBar-form {
-	width: 160px;
+	width: fit-content;
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
-	background-color: #003301;
-	position: relative;
-	margin-top: -100px;
+	position: absolute;
+	margin-left: 2em;
+	margin-top: -8em;
 }
 
 .NaviBar-element {

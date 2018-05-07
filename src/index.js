@@ -10,6 +10,7 @@ ReactDOM.render(homePage(), document.getElementById('root'));
 
 // app start button
 document.getElementById('startButton').onclick = () => {
+	document.getElementById('startButton').style.visibility = "hidden";
 	ReactDOM.render(<App/>, document.getElementById('root'));
 };
 
