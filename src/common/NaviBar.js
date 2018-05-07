@@ -12,9 +12,12 @@ export default class NaviBar extends Component {
 			resultSecond,
 		} = this.props.state;
 
-		return <form className='NaviBar-form'>
-			<CoinMenu className='NaviBar-element' coin={coin} resultFirst={resultFirst}/>
-			<SnapMenu className='NaviBar-element' snapId={snapId} resultSecond={resultSecond}/>
-		</form>
+		if (resultFirst)
+			return <form className='NaviBar-form'>
+				<CoinMenu className='NaviBar-element' coin={coin} resultFirst={resultFirst}/>
+				<SnapMenu className='NaviBar-element' snapId={snapId} resultSecond={resultSecond}/>
+			</form>;
+		else
+			return <div/>
 	}
 }
