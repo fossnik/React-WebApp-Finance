@@ -7,24 +7,14 @@ const SnapshotDetail = (props) => {
 
 	return (
 		<div className="Table-container">
+			<div className="Detail-coin">
+				<h3>{coin.name}</h3>
+				<h6>{coin.symbol_full}</h6>
+				<h4>Snapshot {coin.ID}</h4>
+				<h5>{coin.dateCreated}</h5>
+			</div>
 			<table className="Table">
 				<tbody className="Table-body">
-					<tr>
-						<td>ID</td>
-						<td><span>{coin.ID}</span></td>
-					</tr>
-					<tr>
-						<td>Date Created</td>
-						<td><span>{coin.dateCreated}</span></td>
-					</tr>
-					<tr>
-						<td>Symbol</td>
-						<td><span>{coin.symbol_safe}</span></td>
-					</tr>
-					{/*<tr>*/}
-						{/*<td>Name</td>*/}
-						{/*<td><span>{coin.name}</span></td>*/}
-					{/*</tr>*/}
 					<tr>
 						<td>Price</td>
 						<td><span>{coin.price}</span></td>

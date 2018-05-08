@@ -5,7 +5,6 @@ import '../../common/Table.css'
 export default class SnapshotIndex extends Component {
 	render() {
 		const { result, action } = this.props;
-
 		return (
 			<div className="Table-container">
 				<table className="Table">
@@ -15,13 +14,13 @@ export default class SnapshotIndex extends Component {
 					</tr>
 					</thead>
 					<tbody className="Table-body">
-					{result.snaps.map(snapshot => (
+					{result.snapshots.map(snapshot => (
 						<tr
-							key={snapshot.ID}
+							key={snapshot[0]}
 							onClick={action}
 						>
-							<td value={snapshot.ID}>
-								{snapshot.dateCreated}
+							<td value={snapshot[0]}>
+								{snapshot[1]}
 							</td>
 						</tr>
 					))}
