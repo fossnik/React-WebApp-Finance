@@ -5,13 +5,10 @@ const CoinMenu = (props) => {
 	const {coin, resultFirst} = props;
 
 	if (resultFirst)
-		return <select name="coin">
+		return <select defaultValue={coin} onChange={coinSelectHandler} name="coin">
 			{
 				resultFirst.names.map((coinName, i) => {
-					if (coinName === coin)
-						return <option key={i} selected value={coinName}>{coinName}</option>;
-					else
-						return <option key={i} value={coinName}>{coinName}</option>;
+					return <option key={i} value={coinName}>{coinName}</option>;
 				})
 			}
 		</select>;
