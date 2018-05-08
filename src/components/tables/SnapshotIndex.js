@@ -20,10 +20,8 @@ export default class SnapshotIndex extends Component {
 							key={snapshot.ID}
 							onClick={action}
 						>
-							<td>
-								<span snapid={snapshot.ID}>
-									{snapshot.dateCreated}
-								</span>
+							<td value={snapshot.ID}>
+								{snapshot.dateCreated}
 							</td>
 						</tr>
 					))}

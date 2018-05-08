@@ -30,7 +30,7 @@ export default class App extends Component {
 		if (endpoint.coin)
 			url += endpoint.coin;
 
-		if (endpoint.snapId)
+		if (endpoint.snapId && endpoint.coin)
 			url += "/" + endpoint.snapId;
 
 		console.log("Fetch: " + url);
@@ -67,8 +67,7 @@ export default class App extends Component {
 	}
 
 	snapshotSelectHandler(event) {
-		const re = new RegExp(/(?<=<span snapid=")(.*)(?=">)/);
-		const snapId = re.exec(event.target.outerHTML)[0];
+		const snapId = event.target.getAttribute("value");
 
 		this.setState({
 			snapId: snapId,
