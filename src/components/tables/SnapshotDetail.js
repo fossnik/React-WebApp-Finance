@@ -19,12 +19,12 @@ const SnapshotDetail = (props) => {
 					</tr>
 					<tr>
 						<td>Symbol</td>
-						<td><span>{coin.symbol}</span></td>
+						<td><span>{coin.symbol_safe}</span></td>
 					</tr>
-					<tr>
-						<td>Name</td>
-						<td><span>{coin.name}</span></td>
-					</tr>
+					{/*<tr>*/}
+						{/*<td>Name</td>*/}
+						{/*<td><span>{coin.name}</span></td>*/}
+					{/*</tr>*/}
 					<tr>
 						<td>Price</td>
 						<td><span>{coin.price}</span></td>

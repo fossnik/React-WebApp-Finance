@@ -55,7 +55,7 @@ export default class App extends Component {
 	}
 
 	coinSelectHandler(event) {
-		const coin = event.target.innerText;
+		const coin = event.target.getAttribute("value");
 
 		this.setState({
 			coin: coin,

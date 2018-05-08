@@ -4,23 +4,23 @@ import '../../common/Table.css'
 
 export default class CoinIndex extends Component {
 	render() {
-		if (this.props.result.names) {
+		if (this.props.result.coins) {
 			return <div className="Table-container">
 				<table className="Table">
 					<thead className="Table-head">
 					<tr>
-						<th>Coins</th>
+						<th>Name</th>
+						<th>Pair Symbol</th>
 					</tr>
 					</thead>
 					<tbody className="Table-body">
-					{this.props.result.names.map(coin => (
+					{this.props.result.coins.map(coin => (
 						<tr
-							key={coin}
+							key={coin.symbol_safe}
 							onClick={this.props.action}
 						>
-							<td>
-								<span>{coin}</span>
-							</td>
+							<td value={coin.symbol_safe}>{coin.name}</td>
+							<td value={coin.symbol_safe}>{coin.symbol_full}</td>
 						</tr>
 					))}
 					</tbody>

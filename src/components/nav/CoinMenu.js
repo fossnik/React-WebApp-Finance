@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 const CoinMenu = (props) => {
 	const {coin, resultFirst} = props;
 
-	if (resultFirst)
+	if (resultFirst.coins)
 		return <select defaultValue={coin} name="coin">
 			{
-				resultFirst.names.map((coinName, i) => {
-					return <option key={i} value={coinName}>{coinName}</option>;
+				resultFirst.coins.map((coinObj, i) => {
+					return <option key={i} value={coinObj.symbol_safe}>{coinObj.name}</option>;
 				})
 			}
 		</select>;
