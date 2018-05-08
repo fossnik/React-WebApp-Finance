@@ -80,7 +80,7 @@ export default class App extends Component {
 
 	render() {
 		return <div>
-				<NaviBox state={this.state}/>
+				{/*<NaviBox state={this.state}/>*/}
 				<Table
 					resultFirst={this.state.resultFirst}
 					resultSecond={this.state.resultSecond}
