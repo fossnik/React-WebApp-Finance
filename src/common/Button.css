@@ -1,0 +1,38 @@
+.StartButton {
+	float: left;
+	font-size: large;
+	text-align: center;
+	color: #FFFFFF;
+	position: absolute;
+	padding-left: 1em;
+	padding-right: 1em;
+	background-color: #d01386;
+}
+
+.StartButton:hover,
+.StartButton:focus,
+.StartButton:active,
+.StartButton.active,
+.open .dropdown-toggle.StartButton {
+	color: #FFFFFF;
+	background-color: #48247A;
+}
+
+.StartButton.disabled,
+.StartButton[disabled],
+fieldset[disabled] .StartButton,
+.StartButton.disabled:hover,
+.StartButton[disabled]:hover,
+fieldset[disabled] .StartButton:hover,
+.StartButton.disabled:focus,
+.StartButton[disabled]:focus,
+fieldset[disabled] .StartButton:focus,
+.StartButton.disabled:active,
+.StartButton[disabled]:active,
+fieldset[disabled] .StartButton:active,
+.StartButton.disabled.active,
+.StartButton[disabled].active,
+fieldset[disabled] .StartButton.active {
+	background-color: #7327D0;
+	border-color: #100060;
+}
