@@ -17,6 +17,7 @@
 ### [Hosting Environment](#hosting-environment-1)
 - Linode
 - Arch Linux
+- Security
 
 ## JavaScript Frameworks
 ### [Node.js](https://www.nodejs.org)
@@ -60,3 +61,13 @@ The least expensive service tier appears more than sufficient.
 ### [Arch Linux](https://www.archlinux.org)
 I used Arch for my Linode container because it is a minimalist-oriented GNU/Linux distribution with a robust support community (and superb documentation).
 Arch Linux insists on early support of the most bleeding-edge new kernels and packages. This made it necessary to utilize Node's [npm n](https://www.npmjs.com/package/n) version management package to ensure compatibility with all the required packages of this project. In particular, the `node-sqlite3` package does not yet provide binaries ready for `Node.js (version 10.0)` (provided by the Arch Linux package repository). `n` allows for convenient access to the better-supported `Node.js (version 9.11.1)`.
+
+### Security
+Server hardening and other security considerations a extremely important when crafting a hosting environment. Although this is an extensive topic, the basic considerations in this project were:
+- Creating a non-root user account with restricted privileges and using sudo as a matter of course.
+- Disabling remote log-in to the root account.
+- Enforcing RSA-key authentication regime for SSH access.
+- Disable and remove unnecessary daemons and services that listen by default.
+- Configure iptables or other firewall accept only a narrow range of essential net traffic, and block other traffic by default.
+- Use fail2ban or another intrusion prevention system to neutralize repeatedly failed attempts at login.
+- ALWAYS keep software up to date with the latest security patches.

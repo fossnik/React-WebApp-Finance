@@ -32,6 +32,7 @@ const About = () => {
 				<h3><a href="#hosting-environment">Hosting Environment</a></h3>
 				<li>Linode</li>
 				<li>Arch Linux</li>
+				<li>Security / System Hardening</li>
 			</div>
 		</div>
 
@@ -130,6 +131,20 @@ const About = () => {
 				the <code>node-sqlite3</code> package does not yet provide binaries ready for <code>Node.js (version
 				10.0)</code> (provided by the Arch Linux package repository). <code>n</code> allows for convenient
 				access to the better-supported <code>Node.js (version 9.11.1)</code>.
+			</p>
+
+			<h3>Security / System Hardening</h3>
+			<p>
+				Server hardening and other security considerations a extremely important when crafting a hosting environment. Although this is an extensive topic, the basic considerations in this project were:
+				<ul>
+					<li>Creating a non-root user account with restricted privileges and using sudo as a matter of course.</li>
+					<li>Disabling remote log-in to the root account.</li>
+					<li>Enforcing RSA-key authentication regime for SSH access.</li>
+					<li>Disable and remove unnecessary daemons and services that listen by default.</li>
+					<li>Configure iptables or other firewall accept only a narrow range of essential net traffic, and block other traffic by default.</li>
+					<li>Use fail2ban or another intrusion prevention system to neutralize repeatedly failed attempts at login.</li>
+					<li>ALWAYS keep software up to date with the latest security patches.</li>
+				</ul>
 			</p>
 		</article>
 	</div>

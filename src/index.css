@@ -66,6 +66,11 @@ li {
 	padding: 2px;
 }
 
+ul li {
+	list-style: outside;
+	text-align: justify;
+}
+
 article h2 {
 	text-align: center;
 	width: 450px;
