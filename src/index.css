@@ -39,7 +39,6 @@ body {
 
 .About-title {
 	text-align: center;
-	width: 450px;
 	margin: 0 auto;
 	padding-top: 10px;
 	padding-bottom: 10px;
@@ -73,7 +72,6 @@ ul li {
 
 article h2 {
 	text-align: center;
-	width: 450px;
 	margin-top: 25px;
 	margin-left: auto;
 	margin-right: auto;

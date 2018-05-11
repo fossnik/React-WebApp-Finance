@@ -1,5 +1,5 @@
 import React from 'react'
-import './index.css'
+import '../index.css'
 
 const About = () => {
 	return <div className="About-body">
