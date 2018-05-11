@@ -65,11 +65,6 @@ li {
 	padding: 2px;
 }
 
-ul li {
-	list-style: outside;
-	text-align: justify;
-}
-
 article h2 {
 	text-align: center;
 	margin-top: 25px;
@@ -87,4 +82,11 @@ article h3 {
 article p {
 	margin-left: 35px;
 	margin-right: 30px;
+}
+
+article p li {
+	list-style: outside;
+	text-align: left;
+	margin-left: 50px;
+	margin-right: 50px;
 }

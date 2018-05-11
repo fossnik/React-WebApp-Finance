@@ -21,21 +21,21 @@
 
 ## JavaScript Frameworks
 ### [Node.js](https://www.nodejs.org)
-`Node.JS` is a cross-platform JavaScript run-time environment that executes JS code server-side. I elected to build a project around the Node.js framework because it is versatile and extremely popular, being supported by a large open-source community, and is presently one of the hottest technologies in the web development universe.
+`Node.JS` is a cross-platform JavaScript run-time environment that executes JS code server-side. I elected to build a project around the Node.js framework because it is versatile and extremely popular, with a vast repository of web-dev packages supported by a thriving open-source community. All this accounts for why Node.js presently one of the hottest technologies in the web development universe.
 
 ### [Express.js](https://www.reactjs.org)
 `Express.js` is a minimalist Node.js framework for web applications. It is used here for serving JSON objects at the API endpoints.
 
 ### [React.js](https://www.reactjs.org)
-`React.js` is a JavaScript library for creating responsive user interfaces. Built atop the Node package system, React implements a design paradigm of discrete so-called 'compositable components' to aid development of robust web applications that avoid the pitfalls unwieldy monolithic and tightly-coupled codebases that rapidly become unmanageable. React also avails the `JSX syntax`, which conveniently resembles the structure of HTML while allowing developers to eschew the excessive verbosity of plain JavaScript.
+`React.js` is a JavaScript library for creating responsive user interfaces. Built atop the Node package system, React implements a design paradigm of discrete so-called 'compositable components' to streamline development of elegant web applications that avoid the pitfalls of unwieldy, monolithic and tightly-coupled codebases that rapidly become unmanageable. React also avails the `JSX syntax`, which conveniently resembles the structure of HTML while allowing developers to eschew the syntactic verbosity of plain JavaScript.
 
 ## Web Scraping
 ### [Selenium](https://www.seleniumhq.org)
-The actual web-scraping is achieved with the `Selenium` web browser automation framework, which makes it possible to interact with dynamic websites in a programmatic (and highly versatile) manner.
+The actual web-scraping is achieved with the <code>Selenium</code> web browser automation framework, which makes it possible to interact with (and retrieve data from) web resources through various programmatic methods.
 A scraper I created in Java to fetch data from the dynamic contents of the [yahoo finance](https://finance.yahoo.com/cryptocurrencies) page is available in this [separate web-scraper project](https://www.github.com/fossnik/SeleniumScraper), which implements the Chrome WebDriver.
 
 ### [YahooFinance](finance.yahoo.com)
-`Yahoo! Finance` is a free web service and portfolio management resource from which the contents of the SQLite database are derived. It is public and reliable, although the implementation has tended to mutate on occasion. `finance.yahoo.com/cryptocurrencies`
+`Yahoo! Finance` is a free web resource and financial portfolio service from which the contents of the SQLite database are derived. It is public and reliable, although the implementation has tended to mutate on occasion. `finance.yahoo.com/cryptocurrencies`
 
 ## Database
 ### [SQLite](https://www.sqlite.org)
@@ -63,11 +63,12 @@ I used Arch for my Linode container because it is a minimalist-oriented GNU/Linu
 Arch Linux insists on early support of the most bleeding-edge new kernels and packages. This made it necessary to utilize Node's [npm n](https://www.npmjs.com/package/n) version management package to ensure compatibility with all the required packages of this project. In particular, the `node-sqlite3` package does not yet provide binaries ready for `Node.js (version 10.0)` (provided by the Arch Linux package repository). `n` allows for convenient access to the better-supported `Node.js (version 9.11.1)`.
 
 ### Security
-Server hardening and other security considerations a extremely important when crafting a hosting environment. Although this is an extensive topic, the basic considerations in this project were:
+Server hardening and other security considerations a extremely important when crafting a hosting environment.
+Although this is an extensive topic, the basic considerations in this project were:
 - Creating a non-root user account with restricted privileges and using sudo as a matter of course.
 - Disabling remote log-in to the root account.
 - Enforcing RSA-key authentication regime for SSH access.
-- Disable and remove unnecessary daemons and services that listen by default.
-- Configure iptables or other firewall accept only a narrow range of essential net traffic, and block other traffic by default.
-- Use fail2ban or another intrusion prevention system to neutralize repeatedly failed attempts at login.
+- Disable and remove unnecessary daemons and services that listen actively on net ports.
+- Configure iptables or other firewall tolerate only a narrow range of essential net traffic.
+- Use fail2ban or another intrusion prevention system to neutralize attackers after repeated failed attempts at login.
 - ALWAYS keep software up to date with the latest security patches.
