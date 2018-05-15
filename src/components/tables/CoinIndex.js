@@ -4,7 +4,7 @@ import '../../common/Table.css'
 
 export default class CoinIndex extends Component {
 	render() {
-		if (this.props.result.coins) {
+		if (this.props.coins) {
 			return <div className="Table-container">
 				<table className="Table">
 					<thead className="Table-head">
@@ -14,7 +14,7 @@ export default class CoinIndex extends Component {
 					</tr>
 					</thead>
 					<tbody className="Table-body">
-					{this.props.result.coins.map(coin => (
+					{this.props.coins.map(coin => (
 						<tr
 							key={coin.symbol_safe}
 							onClick={this.props.action}
@@ -33,5 +33,5 @@ export default class CoinIndex extends Component {
 };
 
 CoinIndex.propTypes = {
-	result: PropTypes.object.isRequired,
+	coins: PropTypes.array.isRequired,
 };

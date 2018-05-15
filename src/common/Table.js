@@ -1,45 +1,37 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import CoinIndex from '../components/tables/CoinIndex'
-import SnapshotIndex from '../components/tables/SnapshotIndex'
-import SnapshotDetail from '../components/tables/SnapshotDetail'
+// import SnapshotIndex from '../components/tables/SnapshotIndex'
+// import SnapshotDetail from '../components/tables/SnapshotDetail'
+import { connect } from 'react-redux'
 
-export default class Table extends Component {
+class Table extends Component {
 	render() {
-		const {
-			coinSelectHandler,
-			snapshotSelectHandler,
-			resultFirst,
-			resultSecond,
-			resultThird,
-		} = this.props;
 
-		if (resultThird)
-			return <SnapshotDetail
-				result={resultThird}
-			/>;
+		// if (resultThird)
+		// 	return <SnapshotDetail
+		// 		result={resultThird}
+		// 	/>;
+		//
+		// else if (resultSecond)
+		// 	return <SnapshotIndex
+		// 		result={resultSecond}
+		// 		action={snapshotSelectHandler}
+		// 	/>;
 
-		else if (resultSecond)
-			return <SnapshotIndex
-				result={resultSecond}
-				action={snapshotSelectHandler}
-			/>;
-
-		else if (resultFirst)
+		if (this.props.coins)
 			return <CoinIndex
-				result={resultFirst}
-				action={coinSelectHandler}
+				coins={this.props.coins}
+				// action={coinSelectHandler}
 			/>;
 
 		else
 			return <div>Loading...</div>
 	}
 }
+function mapStateToProps(state) {
+	return {
+		coins: state.coins
+	}
+}
 
-Table.propTypes = {
-	coinSelectHandler: PropTypes.func.isRequired,
-	snapshotSelectHandler: PropTypes.func.isRequired,
-	resultFirst: PropTypes.object,
-	resultSecond: PropTypes.object,
-	resultThird: PropTypes.object,
-};
+export default connect(mapStateToProps)(Table)
