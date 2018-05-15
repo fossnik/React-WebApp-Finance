@@ -11,20 +11,17 @@ class Table extends Component {
 		// 	return <SnapshotDetail
 		// 		result={resultThird}
 		// 	/>;
-		//
-		// else if (resultSecond)
-		// 	return <SnapshotIndex
-		// 		result={resultSecond}
-		// 		action={snapshotSelectHandler}
-		// 	/>;
+
+		if (this.props.activeCoin)
+			return <SnapshotIndex/>;
 
 		if (this.props.coins)
 			return <CoinIndex/>;
 
-		else
-			return <div>Loading...</div>
+		return <div>Loading...</div>
 	}
 }
+
 function mapStateToProps(state) {
 	return {
 		coins: state.coins
