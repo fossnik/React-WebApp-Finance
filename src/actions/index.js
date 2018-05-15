@@ -9,9 +9,6 @@ export function fetchCoinIndex() {
 		.then((response) => response.json().then(json => {
 			return response.ok ? json : Promise.reject(json)
 		}))
-		// .then((response) => {
-		// 	return response.coins.map(coinObj => coinObj.name)
-		// })
 		.then((response) => {
 			return {
 				type: FETCH_COIN_INDEX,
