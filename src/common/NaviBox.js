@@ -1,13 +1,28 @@
 import React, { Component } from 'react'
 import CoinMenu from '../containers/CoinMenu'
-// import SnapMenu from '../components/nav/SnapMenu'
+import SnapMenu from '../containers/SnapMenu'
 import './NaviBox.css'
+import { connect } from 'react-redux'
 
-export default class NaviBox extends Component {
+class NaviBox extends Component {
 	render() {
-		return <form className='NaviBox-form'>
-			<CoinMenu className='NaviBox-element'/>
-			{/*<SnapMenu className='NaviBox-element'/>*/}
-		</form>;
+		if (this.props.activeCoin)
+			return <form className='NaviBox-form'>
+				<CoinMenu className='NaviBox-element'/>
+				<SnapMenu className='NaviBox-element'/>
+			</form>;
+
+		else
+			return <form className='NaviBox-form'>
+				<CoinMenu className='NaviBox-element'/>
+			</form>;
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		activeCoin: state.activeCoin
+	}
+}
+
+export default connect(mapStateToProps)(NaviBox)

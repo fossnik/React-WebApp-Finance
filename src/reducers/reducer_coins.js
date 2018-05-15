@@ -6,7 +6,7 @@ export default function(state = [], action) {
 	 */
 	switch (action.type) {
 		case FETCH_COIN_INDEX:
-			return action.payload.response;
+			return action.payload.coins;
 
 		default:
 			return state;

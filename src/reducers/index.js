@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import CoinsReducer from './reducer_coins'
 import ActiveCoin from './reducer_active_coin'
+import SnapshotsReducer from './reducer_snapshots'
+import ActiveSnapshot from './reducer_active_snapshot'
 
 const rootReducer = combineReducers({
 
@@ -11,6 +13,8 @@ const rootReducer = combineReducers({
 
 	coins: CoinsReducer,
 	activeCoin: ActiveCoin,
+	snapshots: SnapshotsReducer,
+	activeSnapshot: ActiveSnapshot,
 });
 
 export default rootReducer;

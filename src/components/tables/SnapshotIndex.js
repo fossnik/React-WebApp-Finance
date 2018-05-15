@@ -1,36 +1,49 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import '../../common/Table.css'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { selectSnapshot } from "../../actions"
 
-export default class SnapshotIndex extends Component {
+class SnapshotIndex extends Component {
 	render() {
-		const { result, action } = this.props;
-		return (
-			<div className="Table-container">
-				<table className="Table">
-					<thead className="Table-head">
-					<tr>
-						<th>Coins</th>
-					</tr>
-					</thead>
-					<tbody className="Table-body">
-					{result.snapshots.map(snapshot => (
-						<tr
-							key={snapshot[0]}
-							onClick={action}
-						>
-							<td value={snapshot[0]}>
-								{snapshot[1]}
-							</td>
+		if (this.props.snapshots)
+			return (
+				<div className="Table-container">
+					<table className="Table">
+						<thead className="Table-head">
+						<tr>
+							<th>Coins</th>
 						</tr>
-					))}
-					</tbody>
-				</table>
-			</div>
-		)
+						</thead>
+						<tbody className="Table-body">
+						{this.props.snapshots.map(snapshot => (
+							<tr
+								key={snapshot[0]}
+								onClick={() => this.props.selectSnapshot(snapshot[0])}
+							>
+								<td value={snapshot[0]}>
+									{snapshot[1]}
+								</td>
+							</tr>
+						))}
+						</tbody>
+					</table>
+				</div>
+			);
+		else
+			return <div/>;
 	}
 }
 
-SnapshotIndex.propTypes = {
-	result: PropTypes.object.isRequired,
-};
+function mapStateToProps(state) {
+	return {
+		snapshots: state.snapshots,
+		activeCoin: state.activeCoin,
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({selectSnapshot}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SnapshotIndex)

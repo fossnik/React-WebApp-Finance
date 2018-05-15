@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import CoinIndex from '../components/tables/CoinIndex'
-// import SnapshotIndex from '../components/tables/SnapshotIndex'
+import SnapshotIndex from '../components/tables/SnapshotIndex'
 // import SnapshotDetail from '../components/tables/SnapshotDetail'
 import { connect } from 'react-redux'
 
@@ -24,7 +24,8 @@ class Table extends Component {
 
 function mapStateToProps(state) {
 	return {
-		coins: state.coins
+		coins: state.coins,
+		activeCoin: state.activeCoin
 	}
 }
 

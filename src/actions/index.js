@@ -4,6 +4,9 @@ import { API_URL } from '../config';
 export const FETCH_COIN_INDEX = 'FETCH_COIN_INDEX';
 export const COIN_SELECTED = 'COIN_SELECTED';
 
+export const FETCH_SNAPSHOT_INDEX = 'FETCH_SNAPSHOT_INDEX';
+export const SNAPSHOT_SELECTED = 'SNAPSHOT_SELECTED';
+
 export function fetchCoinIndex() {
 	return fetch(API_URL)
 		.then((response) => response.json().then(json => {
@@ -12,7 +15,7 @@ export function fetchCoinIndex() {
 		.then((response) => {
 			return {
 				type: FETCH_COIN_INDEX,
-				payload: {response: response.coins}
+				payload: {coins: response.coins}
 			}
 		})
 		.catch(error => {
@@ -26,5 +29,28 @@ export function selectCoin(coin) {
 	return {
 		type: COIN_SELECTED,
 		payload: coin
+	}
+}
+
+export function fetchSnapshotIndex(coin) {
+	return fetch(`${API_URL}/${coin}`)
+		.then((response) => response.json().then(json => {
+			return response.ok ? json : Promise.reject(json)
+		}))
+		.then((response) => {
+			return {
+				type: FETCH_SNAPSHOT_INDEX,
+				payload: {snapshots: response.snapshots}
+			}
+		})
+		.catch(error => {
+			console.log("Could not Load from API\n" + error)
+		});
+}
+
+export function selectSnapshot(snapId) {
+	return {
+		type: SNAPSHOT_SELECTED,
+		payload: snapId,
 	}
 }
