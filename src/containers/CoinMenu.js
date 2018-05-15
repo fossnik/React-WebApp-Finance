@@ -12,7 +12,7 @@ class CoinMenu extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchCoinIndex();
+		this.props.fetchCoinIndex()
 	}
 
 	onCoinChange(event) {
