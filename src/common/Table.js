@@ -19,10 +19,7 @@ class Table extends Component {
 		// 	/>;
 
 		if (this.props.coins)
-			return <CoinIndex
-				coins={this.props.coins}
-				// action={coinSelectHandler}
-			/>;
+			return <CoinIndex/>;
 
 		else
 			return <div>Loading...</div>

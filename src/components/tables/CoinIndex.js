@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import '../../common/Table.css'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { selectCoin } from "../../actions"
 
-export default class CoinIndex extends Component {
+class CoinIndex extends Component {
 	render() {
 		if (this.props.coins) {
 			return <div className="Table-container">
@@ -17,10 +19,10 @@ export default class CoinIndex extends Component {
 					{this.props.coins.map(coin => (
 						<tr
 							key={coin.symbol_safe}
-							onClick={this.props.action}
+							onClick={() => this.props.selectCoin(coin.symbol_safe)}
 						>
-							<td value={coin.symbol_safe}>{coin.name}</td>
-							<td value={coin.symbol_safe}>{coin.symbol_full}</td>
+							<td>{coin.name}</td>
+							<td>{coin.symbol_full}</td>
 						</tr>
 					))}
 					</tbody>
@@ -30,8 +32,16 @@ export default class CoinIndex extends Component {
 			return <div/>;
 		}
 	}
-};
+}
 
-CoinIndex.propTypes = {
-	coins: PropTypes.array.isRequired,
-};
+function mapStateToProps(state) {
+	return {
+		coins: state.coins
+	}
+}
+
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({selectCoin}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoinIndex)
