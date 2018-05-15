@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Table from './common/Table'
-// import NaviBox from './common/NaviBox'
+import NaviBox from './common/NaviBox'
 import { API_URL } from './config'
 
 export default class App extends Component {
@@ -80,7 +80,7 @@ export default class App extends Component {
 
 	render() {
 		return <div>
-			{/*<NaviBox state={this.state}/>*/}
+			<NaviBox state={this.state}/>
 			<Table
 					resultFirst={this.state.resultFirst}
 					resultSecond={this.state.resultSecond}

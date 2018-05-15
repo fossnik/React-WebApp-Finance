@@ -1,12 +1,15 @@
 {
   "name": "yz-finance-react",
-  "version": "0.5.0",
+  "version": "0.8.6",
   "private": true,
   "dependencies": {
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts": "1.1.0"
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.0",
+    "redux": "^4.0.0",
+    "redux-promise": "^0.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
