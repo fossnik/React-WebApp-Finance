@@ -6,7 +6,7 @@ import { selectCoin } from "../../actions"
 
 class CoinIndex extends Component {
 	render() {
-		if (this.props.coins) {
+		if (this.props.coins)
 			return <div className="Table-container">
 				<table className="Table">
 					<thead className="Table-head">
@@ -28,9 +28,8 @@ class CoinIndex extends Component {
 					</tbody>
 				</table>
 			</div>;
-		} else {
+		else
 			return <div/>;
-		}
 	}
 }
 
