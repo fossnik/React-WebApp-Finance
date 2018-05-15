@@ -17,7 +17,7 @@ const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
 // app start button
 document.querySelector('.StartButton').onclick = () => {
-	document.querySelector('.StartButton').style.visibility = "hidden";
+	document.querySelector('.StartButton').style.display = "none";
 	ReactDOM.render(
 		<Provider store={createStoreWithMiddleware(reducers)}>
 			<App/>
