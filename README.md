@@ -4,6 +4,7 @@
 - Node.js
 - Express.js
 - React.js
+- Redux.js
 
 ### [Web Scraping](#web-scraping-1)
 - Selenium
@@ -28,6 +29,9 @@
 
 ### [React.js](https://www.reactjs.org)
 `React.js` is a JavaScript library for creating responsive user interfaces. Built atop the Node package system, React implements a design paradigm of discrete so-called 'compositable components' to streamline development of elegant web applications that avoid the pitfalls of unwieldy, monolithic and tightly-coupled codebases that rapidly become unmanageable. React also avails the `JSX syntax`, which conveniently resembles the structure of HTML while allowing developers to eschew the syntactic verbosity of plain JavaScript.
+
+### [Redux.js](https://redux.js.org)
+The `Redux.js` JavaScript library is a state management engine that works exceptionally well with React.js to create an immutable model of what is viewed in the web browser.  Using react-redux state/property mappings and redux connect to dispatch actions, I was about to create navigation features that are wired up with triggers so that a change in my navigation box is reflected instantly with a new page view and uniformly throughout my application state model.
 
 ## Web Scraping
 ### [Selenium](https://www.seleniumhq.org)

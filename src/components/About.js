@@ -13,6 +13,7 @@ const About = () => {
 				<li>Node.js</li>
 				<li>Express.js</li>
 				<li>React.js</li>
+				<li>Redux.js</li>
 			</div>
 
 			<div className="About-contents-box">
@@ -60,6 +61,15 @@ const About = () => {
 				codebases that rapidly become unmanageable. React also avails the <code>JSX syntax</code>, which
 				conveniently resembles the structure of HTML while allowing developers to eschew the syntactic verbosity of
 				plain JavaScript.
+			</p>
+
+			<h3><a href="https://redux.js.org">Redux.js</a></h3>
+			<p>
+				The <code>Redux.js</code> JavaScript library is a state management engine that works exceptionally well
+				with React.js to create an immutable model of what is viewed in the web browser.  Using react-redux
+				state/property mappings and redux connect to dispatch actions, I was about to create navigation features
+				that are wired up with triggers so that a change in my navigation box is reflected instantly with a new
+				page view and uniformly throughout my application state model.
 			</p>
 		</article>
 
