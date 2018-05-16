@@ -1,6 +1,6 @@
 import { FETCH_COIN_INDEX } from "../actions"
 
-export default function(state = [], action) {
+export default function(state = null, action) {
 	/**
 	 * this generates a State Object containing an array of coins
 	 */
