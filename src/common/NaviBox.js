@@ -8,13 +8,13 @@ class NaviBox extends Component {
 	render() {
 		if (this.props.activeCoin)
 			return <form className='NaviBox-form'>
-				<CoinMenu className='NaviBox-element'/>
-				<SnapMenu className='NaviBox-element'/>
+				<CoinMenu/>
+				<SnapMenu/>
 			</form>;
 
 		else
 			return <form className='NaviBox-form'>
-				<CoinMenu className='NaviBox-element'/>
+				<CoinMenu/>
 			</form>;
 	}
 }

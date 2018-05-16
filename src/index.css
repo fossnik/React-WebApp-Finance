@@ -33,7 +33,6 @@ body {
 
 .About-body {
 	background-color: #bad4eb;
-	margin: 0;
 	padding-top: 10px;
 }
 
@@ -56,7 +55,11 @@ body {
 .About-contents-box {
 	background-color: #ebb280;
 	border-radius: 5px;
-	padding: 20px;
+	padding: 10px;
+}
+
+.About-contents-box h3 {
+	margin-top: 8px;
 }
 
 li {

@@ -1,13 +1,15 @@
 .NaviBox-form {
-	width: fit-content;
+	width: 160px;
 	display: flex;
 	flex-direction: column;
 	position: absolute;
 	margin-left: 2em;
 	margin-top: -8em;
+	background-color: black;
+	padding: 3px;
 }
 
 .NaviBox-element {
 	align-self: auto;
-	margin: 2px;
+	margin: 1px;
 }

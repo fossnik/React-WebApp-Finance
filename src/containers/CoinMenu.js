@@ -24,7 +24,11 @@ class CoinMenu extends Component {
 		// "mapStateToProps" passes in "this.props"
 		// this.renderMenu will pass back an array of coins as HTML "<option>" strings
 		if (this.props.coins)
-			return <select value={this.props.activeCoin || ''} onChange={this.onCoinChange}>
+			return <select
+				value={this.props.activeCoin || ''}
+				onChange={this.onCoinChange}
+				className='NaviBox-element'
+			>
 				{
 					this.props.coins.map(coin => {
 						return <option key={coin.symbol_safe} value={coin.symbol_safe}>
