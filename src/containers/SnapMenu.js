@@ -20,7 +20,7 @@ class SnapMenu extends Component {
 
 	render() {
 		if (this.props.snapshots)
-			return <select value={this.props.activeSnapshot || ''} name="snapId" onChange={this.onSnapChange}>
+			return <select value={this.props.activeSnapshot || ''} onChange={this.onSnapChange}>
 				{
 					this.props.snapshots.map(snapshot => {
 						return <option key={snapshot[0]} value={snapshot[0]}>

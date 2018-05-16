@@ -10,7 +10,7 @@ class SnapshotDetail extends Component {
 		this.state = { response: {} }
 	}
 
-	componentDidMount() {
+	getSnapshot() {
 		fetch(`${API_URL}/${this.props.activeCoin}/${this.props.activeSnapshot}`)
 			.then(response => response.json().then(json => {
 				return response.ok ? json : Promise.reject(json)
@@ -24,6 +24,8 @@ class SnapshotDetail extends Component {
 	}
 
 	render() {
+		this.getSnapshot();
+
 		const coin = this.state.response;
 		
 		return <div className="Table-container">
