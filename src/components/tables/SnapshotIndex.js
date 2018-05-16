@@ -14,7 +14,7 @@ class SnapshotIndex extends Component {
 						<th>Coins</th>
 					</tr>
 					</thead>
-					<tbody className="Table-body">
+					<tbody className="Table-body Click-able">
 					{this.props.snapshots.map(snapshot => (
 						<tr
 							key={snapshot[0]}

@@ -30,11 +30,22 @@
 	padding: 12px 10px;
 	border: 2px solid midnightblue;
 	color: #fff;
-	cursor: pointer;
 }
 
 .Detail-coin {
 	text-align: center;
 	background-color: wheat;
 	padding: 2px;
+}
+
+.Click-able {
+	cursor: pointer;
+}
+
+.Arrow-up {
+	color: lawngreen;
+}
+
+.Arrow-down {
+	color: red;
 }

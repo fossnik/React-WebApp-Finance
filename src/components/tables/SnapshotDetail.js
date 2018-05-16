@@ -23,6 +23,15 @@ class SnapshotDetail extends Component {
 			})
 	}
 
+	static upOrDownArrow(change, symbol) {
+		if (change > 0)
+			return <span className="Arrow-up">&uarr; {change} {symbol}</span>;
+		else if (change < 0)
+			return <span className="Arrow-down">&darr; {change} {symbol}</span>;
+		else
+			return <span>{change}</span>;
+	}
+
 	render() {
 		this.getSnapshot();
 
@@ -39,35 +48,35 @@ class SnapshotDetail extends Component {
 				<tbody className="Table-body">
 				<tr>
 					<td>Price</td>
-					<td><span>{coin.price}</span></td>
+					<td>{coin.price} $</td>
 				</tr>
 				<tr>
 					<td>Change</td>
-					<td><span>{coin.change}</span></td>
+					<td>{SnapshotDetail.upOrDownArrow(coin.change, '$')}</td>
 				</tr>
 				<tr>
 					<td>Percent Change</td>
-					<td><span>{coin.pChange}</span></td>
+					<td>{SnapshotDetail.upOrDownArrow(coin.pChange, '%')}</td>
 				</tr>
 				<tr>
 					<td>Market Cap</td>
-					<td><span>{coin.marketCap}</span></td>
+					<td>{coin.marketCap}</td>
 				</tr>
 				<tr>
 					<td>Volume</td>
-					<td><span>{coin.volume}</span></td>
+					<td>{coin.volume}</td>
 				</tr>
 				<tr>
 					<td>Volume 24h</td>
-					<td><span>{coin.volume24h}</span></td>
+					<td>{coin.volume24h}</td>
 				</tr>
 				<tr>
 					<td>Total Volume 24h</td>
-					<td><span>{coin.totalVolume24h}</span></td>
+					<td>{coin.totalVolume24h}</td>
 				</tr>
 				<tr>
 					<td>Circulating Suppy</td>
-					<td><span>{coin.circulatingSupply}</span></td>
+					<td>{coin.circulatingSupply}</td>
 				</tr>
 				</tbody>
 			</table>

@@ -15,7 +15,7 @@ class CoinIndex extends Component {
 						<th>Pair Symbol</th>
 					</tr>
 					</thead>
-					<tbody className="Table-body">
+					<tbody className="Table-body Click-able">
 					{this.props.coins.map(coin => (
 						<tr
 							key={coin.symbol_safe}
