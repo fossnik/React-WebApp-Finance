@@ -7,6 +7,6 @@ export default class App extends Component {
 		return <div>
 			<NaviBox/>
 			<Table/>
-		</div>;
+		</div>
 	}
 }

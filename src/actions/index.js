@@ -9,18 +9,18 @@ export const SNAPSHOT_SELECTED = 'SNAPSHOT_SELECTED';
 
 export function fetchCoinIndex() {
 	return fetch(API_URL)
-		.then((response) => response.json().then(json => {
+		.then(response => response.json().then(json => {
 			return response.ok ? json : Promise.reject(json)
 		}))
-		.then((response) => {
+		.then(response => {
 			return {
 				type: FETCH_COIN_INDEX,
 				payload: {coins: response.coins}
 			}
 		})
 		.catch(error => {
-			console.log("Could not Load from API\n" + error)
-		});
+			console.error("Could not Load from API\n" + error)
+		})
 }
 
 export function selectCoin(coin) {
@@ -28,24 +28,24 @@ export function selectCoin(coin) {
 	// an action is an object with a type property.
 	return {
 		type: COIN_SELECTED,
-		payload: coin
+		payload: coin,
 	}
 }
 
 export function fetchSnapshotIndex(coin) {
 	return fetch(`${API_URL}/${coin}`)
-		.then((response) => response.json().then(json => {
+		.then(response => response.json().then(json => {
 			return response.ok ? json : Promise.reject(json)
 		}))
-		.then((response) => {
+		.then(response => {
 			return {
 				type: FETCH_SNAPSHOT_INDEX,
 				payload: {snapshots: response.snapshots}
 			}
 		})
 		.catch(error => {
-			console.log("Could not Load from API\n" + error)
-		});
+			console.error("Could not Load from API\n" + error)
+		})
 }
 
 export function selectSnapshot(snapId) {

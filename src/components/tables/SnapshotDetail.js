@@ -12,14 +12,14 @@ class SnapshotDetail extends Component {
 
 	componentDidMount() {
 		fetch(`${API_URL}/${this.props.activeCoin}/${this.props.activeSnapshot}`)
-			.then((response) => response.json().then(json => {
+			.then(response => response.json().then(json => {
 				return response.ok ? json : Promise.reject(json)
 			}))
-			.then((response) => {
+			.then(response => {
 				 this.setState({response: response.details})
 			})
 			.catch(error => {
-				console.log("Could not Load from API\n" + error)
+				console.error("Could not Load from API\n" + error)
 			})
 	}
 

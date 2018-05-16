@@ -21,5 +21,5 @@ document.querySelector('.StartButton').onclick = () => {
 	ReactDOM.render(
 		<Provider store={createStoreWithMiddleware(reducers)}>
 			<App/>
-		</Provider>, document.getElementById('root'));
+		</Provider>, document.getElementById('root'))
 };

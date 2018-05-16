@@ -51,7 +51,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	// allows us to call the "this.props.selectCoin" inside of our container
 	// that will call our action creator
-	return bindActionCreators({selectCoin, fetchCoinIndex}, dispatch);
+	return bindActionCreators({selectCoin, fetchCoinIndex}, dispatch)
 }
 
 /** this React-Redux "connect" method undergirds the magic of "Smart Components"

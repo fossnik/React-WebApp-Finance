@@ -7,29 +7,27 @@ import { selectSnapshot } from "../../actions"
 class SnapshotIndex extends Component {
 	render() {
 		if (this.props.snapshots)
-			return (
-				<div className="Table-container">
-					<table className="Table">
-						<thead className="Table-head">
-						<tr>
-							<th>Coins</th>
+			return <div className="Table-container">
+				<table className="Table">
+					<thead className="Table-head">
+					<tr>
+						<th>Coins</th>
+					</tr>
+					</thead>
+					<tbody className="Table-body">
+					{this.props.snapshots.map(snapshot => (
+						<tr
+							key={snapshot[0]}
+							onClick={() => this.props.selectSnapshot(snapshot[0])}
+						>
+							<td value={snapshot[0]}>
+								{snapshot[1]}
+							</td>
 						</tr>
-						</thead>
-						<tbody className="Table-body">
-						{this.props.snapshots.map(snapshot => (
-							<tr
-								key={snapshot[0]}
-								onClick={() => this.props.selectSnapshot(snapshot[0])}
-							>
-								<td value={snapshot[0]}>
-									{snapshot[1]}
-								</td>
-							</tr>
-						))}
-						</tbody>
-					</table>
-				</div>
-			);
+					))}
+					</tbody>
+				</table>
+			</div>;
 		else
 			return <div/>;
 	}
