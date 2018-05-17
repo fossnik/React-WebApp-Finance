@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { selectCoin, fetchCoinIndex, selectSnapshot } from "../../actions/index"
+import { selectCoin, selectSnapshot } from "../../actions/index"
 
 class MenuCoins extends Component {
 	constructor(props) {
@@ -9,10 +9,6 @@ class MenuCoins extends Component {
 
 		// binds component state to onCoinChange method (makes state context accessible)
 		this.onCoinChange = this.onCoinChange.bind(this);
-	}
-
-	componentDidMount() {
-		this.props.fetchCoinIndex()
 	}
 
 	onCoinChange(event) {
@@ -56,7 +52,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	// allows us to call the "this.props.selectCoin" inside of our container
 	// that will call our action creator
-	return bindActionCreators({selectCoin, fetchCoinIndex, selectSnapshot}, dispatch)
+	return bindActionCreators({selectCoin, selectSnapshot}, dispatch)
 }
 
 /** this React-Redux "connect" method undergirds the magic of "Smart Components"
