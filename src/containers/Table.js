@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import CoinIndex from './tables/CoinIndex'
-import SnapshotIndex from './tables/SnapshotIndex'
-import SnapshotDetail from './tables/SnapshotDetail'
+import CoinIndex from './views/CoinIndex'
+import SnapshotIndex from './views/SnapshotIndex'
+import SnapshotDetail from './views/SnapshotDetail'
 import { connect } from 'react-redux'
 
 class Table extends Component {

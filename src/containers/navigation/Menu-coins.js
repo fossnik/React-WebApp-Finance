@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { selectCoin, fetchCoinIndex, selectSnapshot } from "../actions"
+import { selectCoin, fetchCoinIndex, selectSnapshot } from "../../actions/index"
 
-class CoinMenu extends Component {
+class MenuCoins extends Component {
 	constructor(props) {
 		super(props);
 
@@ -44,7 +44,7 @@ class CoinMenu extends Component {
 
 // this passes the Global Application State onto this container's local properties
 function mapStateToProps(state) {
-	// whatever is returned will be the props of CoinMenu (local scope)
+	// whatever is returned will be the props of MenuCoins (local scope)
 	// this must be in concert with the state keys defined in the root reducer
 	return {
 		coins: state.coins,
@@ -61,6 +61,6 @@ function mapDispatchToProps(dispatch) {
 
 /** this React-Redux "connect" method undergirds the magic of "Smart Components"
  * Connect hooks together a function with some of the global Application State Data to form a Smart Component
- * by joining the state data of "mapStateToProps" to the function "CoinMenu" - thereby establishing a "Container"
+ * by joining the state data of "mapStateToProps" to the function "MenuCoins" - thereby establishing a "Container"
  */
-export default connect(mapStateToProps, mapDispatchToProps)(CoinMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(MenuCoins)

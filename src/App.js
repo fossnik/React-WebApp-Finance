@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Table from './components/Table'
-import NaviBox from './components/NaviBox'
+import Table from './containers/Table'
+import NaviBox from './containers/navigation/NaviBox'
 
 export default class App extends Component {
 	render() {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { selectSnapshot, fetchSnapshotIndex } from "../actions"
+import { selectSnapshot, fetchSnapshotIndex } from "../../actions/index"
 
-class SnapMenu extends Component {
+class MenuSnaps extends Component {
 	constructor(props) {
 		super(props);
 
@@ -50,4 +50,4 @@ function mapDispatchToProps(dispatch) {
 	return bindActionCreators({selectSnapshot, fetchSnapshotIndex}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SnapMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(MenuSnaps)

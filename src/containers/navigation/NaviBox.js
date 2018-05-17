@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import CoinMenu from '../containers/CoinMenu'
-import SnapMenu from '../containers/SnapMenu'
+import CoinMenu from './Menu-coins'
+import SnapMenu from './Menu-snaps'
 import './NaviBox.css'
 import { connect } from 'react-redux'
 
