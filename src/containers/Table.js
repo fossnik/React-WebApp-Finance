@@ -7,12 +7,6 @@ import { bindActionCreators } from 'redux'
 import { fetchCoinIndex } from "../actions";
 
 class Table extends Component {
-	constructor() {
-		super();
-
-		this.onCoinChange = this.onCoinChange.bind(this);
-	}
-
 	render() {
 		if (this.props.activeCoin && this.props.activeSnapshot)
 			return <SnapshotDetail/>;
