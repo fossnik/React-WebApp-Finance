@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import '../Table.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { selectCoin } from "../../actions"
+import { fetchCoinIndex, selectCoin } from "../../actions"
 
 class CoinIndex extends Component {
+	componentDidMount() {
+		this.props.fetchCoinIndex()
+	}
+
 	render() {
-		if (this.props.coins)
+		const coins = this.props.coins;
+		if (coins)
 			return <div className="Table-container">
 				<table className="Table">
 					<thead className="Table-head">
@@ -16,7 +21,7 @@ class CoinIndex extends Component {
 					</tr>
 					</thead>
 					<tbody className="Table-body Click-able">
-					{this.props.coins.map(coin => (
+					{coins.map(coin => (
 						<tr
 							key={coin.symbol_safe}
 							onClick={() => this.props.selectCoin(coin.symbol_safe)}
@@ -29,7 +34,7 @@ class CoinIndex extends Component {
 				</table>
 			</div>;
 		else
-			return <div/>;
+			return <div>Loading Coin Index...</div>
 	}
 }
 
@@ -40,7 +45,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({selectCoin}, dispatch)
+	return bindActionCreators({selectCoin, fetchCoinIndex}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoinIndex)

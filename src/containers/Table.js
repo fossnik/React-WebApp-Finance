@@ -3,8 +3,6 @@ import CoinIndex from './views/CoinIndex'
 import SnapshotIndex from './views/SnapshotIndex'
 import SnapshotDetail from './views/SnapshotDetail'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { fetchCoinIndex } from "../actions";
 
 class Table extends Component {
 	render() {
@@ -14,16 +12,8 @@ class Table extends Component {
 		if (this.props.activeCoin)
 			return <SnapshotIndex/>;
 
-		if (this.props.coins)
-			return <CoinIndex/>;
-
-		this.props.fetchCoinIndex();
-		return <div>Loading...</div>
+		return <CoinIndex/>;
 	}
-}
-
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({fetchCoinIndex}, dispatch)
 }
 
 function mapStateToProps(state) {
@@ -34,4 +24,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Table)
+export default connect(mapStateToProps)(Table)

@@ -8,16 +8,16 @@ class SnapshotDetail extends Component {
 	constructor() {
 		super();
 
-		this.state = { response: {} }
+		this.state = { snapDetails: null }
 	}
 
-	getSnapshot() {
+	componentDidMount() {
 		fetch(`${API_URL}/${this.props.activeCoin}/${this.props.activeSnapshot}`)
 			.then(response => response.json().then(json => {
 				return response.ok ? json : Promise.reject(json)
 			}))
 			.then(response => {
-				 this.setState({response: response.details})
+				 this.setState({snapDetails: response.details})
 			})
 			.catch(error => {
 				console.error("Could not Load from API\n" + error)
@@ -34,49 +34,50 @@ class SnapshotDetail extends Component {
 	}
 
 	render() {
-		this.getSnapshot();
+		const coin = this.state.snapDetails;
 
-		const coin = this.state.response;
-		
-		return <div>
-			<SnapshotDetailHeader value={coin}/>
-			<table className="Table Table-container">
-				<tbody className="Table-body">
-				<tr>
-					<td>Price</td>
-					<td>{coin.price} $</td>
-				</tr>
-				<tr>
-					<td>Change</td>
-					<td>{SnapshotDetail.upOrDownArrow(coin.change, '$')}</td>
-				</tr>
-				<tr>
-					<td>Percent Change</td>
-					<td>{SnapshotDetail.upOrDownArrow(coin.pChange, '%')}</td>
-				</tr>
-				<tr>
-					<td>Market Cap</td>
-					<td>{coin.marketCap}</td>
-				</tr>
-				<tr>
-					<td>Volume</td>
-					<td>{coin.volume}</td>
-				</tr>
-				<tr>
-					<td>Volume 24h</td>
-					<td>{coin.volume24h}</td>
-				</tr>
-				<tr>
-					<td>Total Volume 24h</td>
-					<td>{coin.totalVolume24h}</td>
-				</tr>
-				<tr>
-					<td>Circulating Suppy</td>
-					<td>{coin.circulatingSupply}</td>
-				</tr>
-				</tbody>
-			</table>
-		</div>
+		if(coin)
+			return <div>
+				<SnapshotDetailHeader value={coin}/>
+				<table className="Table Table-container">
+					<tbody className="Table-body">
+					<tr>
+						<td>Price</td>
+						<td>{coin.price} $</td>
+					</tr>
+					<tr>
+						<td>Change</td>
+						<td>{SnapshotDetail.upOrDownArrow(coin.change, '$')}</td>
+					</tr>
+					<tr>
+						<td>Percent Change</td>
+						<td>{SnapshotDetail.upOrDownArrow(coin.pChange, '%')}</td>
+					</tr>
+					<tr>
+						<td>Market Cap</td>
+						<td>{coin.marketCap}</td>
+					</tr>
+					<tr>
+						<td>Volume</td>
+						<td>{coin.volume}</td>
+					</tr>
+					<tr>
+						<td>Volume 24h</td>
+						<td>{coin.volume24h}</td>
+					</tr>
+					<tr>
+						<td>Total Volume 24h</td>
+						<td>{coin.totalVolume24h}</td>
+					</tr>
+					<tr>
+						<td>Circulating Suppy</td>
+						<td>{coin.circulatingSupply}</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>;
+		else
+			return <div>Loading Detail View...</div>
 	}
 }
 
