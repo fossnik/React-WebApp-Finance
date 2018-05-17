@@ -50,8 +50,34 @@
 	color: red;
 }
 
-.Row-header-coin {
+.Row-header-coin, .Symbol {
 	font-size: x-large;
 	color: #d01386 !important;
 	text-align: center;
+}
+.FullName {
+	font-size: xx-large;
+}
+
+.SnapShot {
+	font-size: large;
+	color: #003301;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.NaviBox-element {
+	width: 160px;
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	margin-left: 2em;
+	margin-top: 1em;
+	padding: 2px;
 }

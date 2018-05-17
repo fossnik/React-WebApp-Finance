@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../Table.css'
 import { API_URL } from "../../config"
-import SnapshotDetailHeader from './SnapshotDetailHeader'
 
 class SnapshotDetail extends Component {
 	constructor() {
@@ -34,44 +33,49 @@ class SnapshotDetail extends Component {
 	}
 
 	render() {
-		const coin = this.state.snapDetails;
+		const coinSnap = this.state.snapDetails;
 
-		if(coin)
+		if(coinSnap)
 			return <div>
-				<SnapshotDetailHeader value={coin}/>
+				<div className="Detail-coin">
+					<div className='FullName'>{coinSnap.name}</div>
+					<div className='Symbol'>{coinSnap.symbol_full}</div>
+					<div className='Date'>{coinSnap.dateCreated}</div>
+					<div className='SnapShot'>Snapshot {coinSnap.ID}</div>
+				</div>
 				<table className="Table Table-container">
 					<tbody className="Table-body">
 					<tr>
 						<td>Price</td>
-						<td>{coin.price} $</td>
+						<td>{coinSnap.price} $</td>
 					</tr>
 					<tr>
 						<td>Change</td>
-						<td>{SnapshotDetail.upOrDownArrow(coin.change, '$')}</td>
+						<td>{SnapshotDetail.upOrDownArrow(coinSnap.change, '$')}</td>
 					</tr>
 					<tr>
 						<td>Percent Change</td>
-						<td>{SnapshotDetail.upOrDownArrow(coin.pChange, '%')}</td>
+						<td>{SnapshotDetail.upOrDownArrow(coinSnap.pChange, '%')}</td>
 					</tr>
 					<tr>
 						<td>Market Cap</td>
-						<td>{coin.marketCap}</td>
+						<td>{coinSnap.marketCap}</td>
 					</tr>
 					<tr>
 						<td>Volume</td>
-						<td>{coin.volume}</td>
+						<td>{coinSnap.volume}</td>
 					</tr>
 					<tr>
 						<td>Volume 24h</td>
-						<td>{coin.volume24h}</td>
+						<td>{coinSnap.volume24h}</td>
 					</tr>
 					<tr>
 						<td>Total Volume 24h</td>
-						<td>{coin.totalVolume24h}</td>
+						<td>{coinSnap.totalVolume24h}</td>
 					</tr>
 					<tr>
 						<td>Circulating Suppy</td>
-						<td>{coin.circulatingSupply}</td>
+						<td>{coinSnap.circulatingSupply}</td>
 					</tr>
 					</tbody>
 				</table>
