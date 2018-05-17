@@ -11,6 +11,9 @@ class SnapshotIndex extends Component {
 				<table className="Table">
 					<thead className="Table-head">
 					<tr>
+						<th className="Row-header-coin" colSpan='2'>{this.props.activeCoinFullName}</th>
+					</tr>
+					<tr>
 						<th>Selenium Web Scrape</th>
 						<th>Log Time</th>
 					</tr>
@@ -41,6 +44,7 @@ function mapStateToProps(state) {
 	return {
 		snapshots: state.snapshots,
 		activeCoin: state.activeCoin,
+		activeCoinFullName: state.coins.filter(coin => coin.symbol_safe === state.activeCoin)[0].name,
 	}
 }
 

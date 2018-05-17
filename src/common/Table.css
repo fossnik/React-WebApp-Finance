@@ -49,3 +49,9 @@
 .Arrow-down {
 	color: red;
 }
+
+.Row-header-coin {
+	font-size: x-large;
+	color: #d01386 !important;
+	text-align: center;
+}
