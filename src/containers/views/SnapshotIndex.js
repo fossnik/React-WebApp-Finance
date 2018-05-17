@@ -2,9 +2,19 @@ import React, { Component } from 'react'
 import '../Table.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { selectSnapshot } from "../../actions"
+import { fetchSnapshotIndex, selectSnapshot } from "../../actions"
 
 class SnapshotIndex extends Component {
+	constructor() {
+		super();
+
+		this.state = { snapshots: null }
+	}
+
+	componentDidMount() {
+		this.state.snapshots = fetchSnapshotIndex(this.props.activeCoin);
+	}
+
 	render() {
 		if (this.props.snapshots)
 			return <div className="Table-container">
@@ -42,7 +52,6 @@ class SnapshotIndex extends Component {
 
 function mapStateToProps(state) {
 	return {
-		snapshots: state.snapshots,
 		activeCoin: state.activeCoin,
 		activeCoinFullName: state.coins.filter(coin => coin.symbol_safe === state.activeCoin)[0].name,
 	}

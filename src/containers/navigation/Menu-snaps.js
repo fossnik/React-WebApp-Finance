@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { selectSnapshot, fetchSnapshotIndex } from "../../actions/index"
+import { selectSnapshot } from "../../actions/index"
 
 class MenuSnaps extends Component {
 	constructor(props) {
 		super(props);
 
 		this.onSnapChange = this.onSnapChange.bind(this);
-	}
-
-	componentDidMount() {
-		this.props.fetchSnapshotIndex(this.props.activeCoin)
 	}
 
 	onSnapChange(event) {
@@ -47,7 +43,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({selectSnapshot, fetchSnapshotIndex}, dispatch)
+	return bindActionCreators({selectSnapshot}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MenuSnaps)
