@@ -11,7 +11,8 @@ class SnapshotIndex extends Component {
 				<table className="Table">
 					<thead className="Table-head">
 					<tr>
-						<th>Coins</th>
+						<th>Selenium Web Scrape</th>
+						<th>Log Time</th>
 					</tr>
 					</thead>
 					<tbody className="Table-body Click-able">
@@ -20,6 +21,9 @@ class SnapshotIndex extends Component {
 							key={snapshot[0]}
 							onClick={() => this.props.selectSnapshot(snapshot[0])}
 						>
+							<td value={snapshot[0]}>
+								Scrape #{snapshot[0]}
+							</td>
 							<td value={snapshot[0]}>
 								{snapshot[1]}
 							</td>
