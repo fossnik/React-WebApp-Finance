@@ -1,0 +1,31 @@
+.FullName {
+	font-size: xx-large;
+}
+
+.SnapShot {
+	font-size: x-small;
+	color: darkgray;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.NaviBox-form {
+	width: 160px;
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	margin-left: 2em;
+	margin-top: -8em;
+	padding: 2px;
+}
+
+.NaviBox-element {
+	align-self: auto;
+	margin: 1px;
+}

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import '../Table.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { fetchSnapshotIndex, selectSnapshot } from "../../actions"
+import { selectSnapshot } from "../../actions"
+import { API_URL } from "../../config"
 
 class SnapshotIndex extends Component {
 	constructor() {
@@ -12,11 +13,20 @@ class SnapshotIndex extends Component {
 	}
 
 	componentDidMount() {
-		this.state.snapshots = fetchSnapshotIndex(this.props.activeCoin);
+		fetch(`${API_URL}${this.props.activeCoin}`)
+			.then(response => response.json().then(json => {
+				return response.ok ? json : Promise.reject(json)
+			}))
+			.then(response => {
+				this.setState({snapshots: response.snapshots});
+			})
+			.catch(error => {
+				console.error("Could not Load from API\n" + error)
+			})
 	}
 
 	render() {
-		if (this.props.snapshots)
+		if (this.state.snapshots)
 			return <div className="Table-container">
 				<table className="Table">
 					<thead className="Table-head">
@@ -29,7 +39,7 @@ class SnapshotIndex extends Component {
 					</tr>
 					</thead>
 					<tbody className="Table-body Click-able">
-					{this.props.snapshots.map(snapshot => (
+					{this.state.snapshots.map(snapshot => (
 						<tr
 							key={snapshot[0]}
 							onClick={() => this.props.selectSnapshot(snapshot[0])}

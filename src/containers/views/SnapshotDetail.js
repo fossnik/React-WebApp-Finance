@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../Table.css'
 import { API_URL } from "../../config"
+import SnapshotDetailHeader from './SnapshotDetailHeader'
 
 class SnapshotDetail extends Component {
 	constructor() {
@@ -38,12 +39,7 @@ class SnapshotDetail extends Component {
 		const coin = this.state.response;
 		
 		return <div>
-			<div className="Detail-coin">
-				<h3>{coin.name}</h3>
-				<h6>{coin.symbol_full}</h6>
-				<h4>Snapshot {coin.ID}</h4>
-				<h5>{coin.dateCreated}</h5>
-			</div>
+			<SnapshotDetailHeader value={coin}/>
 			<table className="Table Table-container">
 				<tbody className="Table-body">
 				<tr>
