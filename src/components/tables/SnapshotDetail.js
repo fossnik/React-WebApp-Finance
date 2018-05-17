@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import '../../common/Table.css'
+import '../Table.css'
 import { API_URL } from "../../config"
 
 class SnapshotDetail extends Component {

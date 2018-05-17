@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../../common/Table.css'
+import '../Table.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { selectCoin } from "../../actions"
