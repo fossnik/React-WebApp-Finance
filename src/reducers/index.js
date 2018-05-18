@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import CoinsReducer from './reducer_coins'
 import ActiveCoin from './reducer_active_coin'
 import ActiveSnapshot from './reducer_active_snapshot'
+import Snapshots from './reducer_snapshots_immutable'
 
 const rootReducer = combineReducers({
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
 	coins: CoinsReducer,
 	activeCoin: ActiveCoin,
 	activeSnapshot: ActiveSnapshot,
+	allSnapshots: Snapshots,
 });
 
 export default rootReducer;

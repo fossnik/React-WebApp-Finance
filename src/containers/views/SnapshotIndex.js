@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../Table.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { selectSnapshot } from "../../actions"
+import { selectSnapshot, appendSnapshotList } from "../../actions"
 import { API_URL } from "../../config"
 
 class SnapshotIndex extends Component {
@@ -14,15 +14,12 @@ class SnapshotIndex extends Component {
 
 	componentDidMount() {
 		fetch(`${API_URL}${this.props.activeCoin}`)
-			.then(response => response.json().then(json => {
-				return response.ok ? json : Promise.reject(json)
-			}))
+			.then(response => response.json().then(json => response.ok ? json : Promise.reject(json)))
 			.then(response => {
 				this.setState({snapshots: response.snapshots});
+				this.props.appendSnapshotList([this.props.activeCoin, response.snapshots])
 			})
-			.catch(error => {
-				console.error("Could not Load from API\n" + error)
-			})
+			.catch(error => console.error("Could not Load from API\n" + error))
 	}
 
 	render() {
@@ -68,7 +65,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({selectSnapshot}, dispatch)
+	return bindActionCreators({selectSnapshot, appendSnapshotList}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SnapshotIndex)

@@ -2,25 +2,29 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import '../Table.css'
 import { API_URL } from "../../config"
+import { bindActionCreators } from 'redux'
+import { selectSnapshot } from "../../actions"
 
 class SnapshotDetail extends Component {
 	constructor() {
 		super();
 
+		this.onSnapIncrement = this.onSnapIncrement.bind(this);
+		this.onSnapDecrement = this.onSnapDecrement.bind(this);
 		this.state = { snapDetails: null }
 	}
 
 	componentDidMount() {
-		fetch(`${API_URL}/${this.props.activeCoin}/${this.props.activeSnapshot}`)
-			.then(response => response.json().then(json => {
-				return response.ok ? json : Promise.reject(json)
-			}))
-			.then(response => {
-				 this.setState({snapDetails: response.details})
-			})
-			.catch(error => {
-				console.error("Could not Load from API\n" + error)
-			})
+		this.fetchDetailFromApi(this.props.activeSnapshot)
+	}
+
+	fetchDetailFromApi(snapshot) {
+		this.props.selectSnapshot(snapshot);
+
+		fetch(`${API_URL}/${this.props.activeCoin}/${snapshot}`)
+			.then(response => response.json().then(json => response.ok ? json : Promise.reject(json)))
+			.then(response => this.setState({snapDetails: response.details}))
+			.catch(error => console.error("Could not Load from API\n" + error))
 	}
 
 	static upOrDownArrow(change, symbol) {
@@ -30,6 +34,24 @@ class SnapshotDetail extends Component {
 			return <span className="Arrow-down">&darr; {change} {symbol}</span>;
 		else
 			return <span>{change}</span>;
+	}
+
+	onSnapIncrement() {
+		if (this.props.snapshots
+			.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
+			.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
+			.filter(x => x[0] === this.props.activeSnapshot + 1).length === 1)
+
+			this.fetchDetailFromApi(this.props.activeSnapshot + 1);
+	}
+
+	onSnapDecrement() {
+		if (this.props.snapshots
+			.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
+			.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
+			.filter(x => x[0] === this.props.activeSnapshot - 1).length === 1)
+
+			this.fetchDetailFromApi(this.props.activeSnapshot - 1);
 	}
 
 	render() {
@@ -42,6 +64,9 @@ class SnapshotDetail extends Component {
 					<div className='Symbol'>{coinSnap.symbol_full}</div>
 					<div className='Date'>{coinSnap.dateCreated}</div>
 					<div className='SnapShot'>Snapshot {coinSnap.ID}</div>
+
+					<button className='ShotNav left' onClick={this.onSnapDecrement}>Previous</button>
+					<button className='ShotNav right' onClick={this.onSnapIncrement}>Next</button>
 				</div>
 				<table className="Table Table-container">
 					<tbody className="Table-body">
@@ -89,7 +114,12 @@ function mapStateToProps(state) {
 	return {
 		activeCoin: state.activeCoin,
 		activeSnapshot: state.activeSnapshot,
+		snapshots: state.allSnapshots,
 	}
 }
 
-export default connect(mapStateToProps)(SnapshotDetail)
+function mapDispatchToProps(dispatch) {
+	return bindActionCreators({selectSnapshot}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SnapshotDetail)

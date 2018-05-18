@@ -64,12 +64,22 @@
 	color: #003301;
 }
 
+.ShotNav {
+	font-size: x-small;
+	position: relative;
+	margin-top: -3em;
+	margin-bottom: .5em;
+	padding: .5em;
+}
+
 .left {
 	float: left;
+	margin-left: 1em;
 }
 
 .right {
 	float: right;
+	margin-right: 1em;
 }
 
 .NaviBox-element {
