@@ -54,14 +54,28 @@
 	font-size: x-large;
 	color: #d01386 !important;
 	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 .FullName {
 	font-size: xx-large;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.Date {
+	font-family: monospace;
+	font-size: large;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .SnapShot {
 	font-size: large;
 	color: #003301;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	padding-bottom: 15px;
 }
 
 .ShotNav {
