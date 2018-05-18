@@ -37,21 +37,23 @@ class SnapshotDetail extends Component {
 	}
 
 	onSnapIncrement() {
-		if (this.props.snapshots
-			.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
-			.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
-			.filter(x => x[0] === this.props.activeSnapshot + 1).length === 1)
+		if (this.props.snapshots)
+			if (this.props.snapshots
+				.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
+				.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
+				.filter(x => x[0] === this.props.activeSnapshot + 1).length === 1)
 
-			this.fetchDetailFromApi(this.props.activeSnapshot + 1);
+				this.fetchDetailFromApi(this.props.activeSnapshot + 1);
 	}
 
 	onSnapDecrement() {
-		if (this.props.snapshots
-			.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
-			.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
-			.filter(x => x[0] === this.props.activeSnapshot - 1).length === 1)
+		if (this.props.snapshots)
+			if (this.props.snapshots
+				.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
+				.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
+				.filter(x => x[0] === this.props.activeSnapshot - 1).length === 1)
 
-			this.fetchDetailFromApi(this.props.activeSnapshot - 1);
+				this.fetchDetailFromApi(this.props.activeSnapshot - 1);
 	}
 
 	render() {
