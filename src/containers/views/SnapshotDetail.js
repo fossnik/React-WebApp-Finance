@@ -37,23 +37,29 @@ class SnapshotDetail extends Component {
 	}
 
 	onSnapIncrement() {
-		if (this.props.snapshots)
+		try {
 			if (this.props.snapshots
 				.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
 				.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
 				.filter(x => x[0] === this.props.activeSnapshot + 1).length === 1)
 
 				this.fetchDetailFromApi(this.props.activeSnapshot + 1);
+		} catch (e) {
+			console.error(e);
+		}
 	}
 
 	onSnapDecrement() {
-		if (this.props.snapshots)
+		try {
 			if (this.props.snapshots
 				.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
 				.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
 				.filter(x => x[0] === this.props.activeSnapshot - 1).length === 1)
 
 				this.fetchDetailFromApi(this.props.activeSnapshot - 1);
+		} catch (e) {
+			console.error(e);
+		}
 	}
 
 	render() {
