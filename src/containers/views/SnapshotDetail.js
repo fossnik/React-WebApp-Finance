@@ -73,35 +73,35 @@ class SnapshotDetail extends Component {
 				<table className="Table Table-container">
 					<tbody className="Table-body">
 					<tr>
-						<td>Price</td>
+						<td id='r'>Price</td>
 						<td>{coinSnap.price} $</td>
 					</tr>
 					<tr>
-						<td>Change</td>
+						<td id='r'>Change</td>
 						<td>{SnapshotDetail.upOrDownArrow(coinSnap.change, '$')}</td>
 					</tr>
 					<tr>
-						<td>Percent Change</td>
+						<td id='r'>Percent Change</td>
 						<td>{SnapshotDetail.upOrDownArrow(coinSnap.pChange, '%')}</td>
 					</tr>
 					<tr>
-						<td>Market Cap</td>
+						<td id='r'>Market Cap</td>
 						<td>{coinSnap.marketCap}</td>
 					</tr>
 					<tr>
-						<td>Volume</td>
+						<td id='r'>Volume</td>
 						<td>{coinSnap.volume}</td>
 					</tr>
 					<tr>
-						<td>Volume 24h</td>
+						<td id='r'>Volume 24h</td>
 						<td>{coinSnap.volume24h}</td>
 					</tr>
 					<tr>
-						<td>Total Volume 24h</td>
+						<td id='r'>Total Volume 24h</td>
 						<td>{coinSnap.totalVolume24h}</td>
 					</tr>
 					<tr>
-						<td>Circulating Suppy</td>
+						<td id='r'>Circulating Suppy</td>
 						<td>{coinSnap.circulatingSupply}</td>
 					</tr>
 					</tbody>

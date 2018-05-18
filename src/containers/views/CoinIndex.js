@@ -16,8 +16,8 @@ class CoinIndex extends Component {
 				<table className="Table">
 					<thead className="Table-head">
 					<tr>
-						<th>Name</th>
 						<th>Pair Symbol</th>
+						<th>Name</th>
 					</tr>
 					</thead>
 					<tbody className="Table-body Click-able">
@@ -26,8 +26,8 @@ class CoinIndex extends Component {
 							key={coin.symbol_safe}
 							onClick={() => this.props.selectCoin(coin.symbol_safe)}
 						>
-							<td>{coin.name}</td>
 							<td>{coin.symbol_full}</td>
+							<td>{coin.name}</td>
 						</tr>
 					))}
 					</tbody>

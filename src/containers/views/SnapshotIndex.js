@@ -41,7 +41,7 @@ class SnapshotIndex extends Component {
 							key={snapshot[0]}
 							onClick={() => this.props.selectSnapshot(snapshot[0])}
 						>
-							<td value={snapshot[0]}>
+							<td id='r' value={snapshot[0]}>
 								Scrape #{snapshot[0]}
 							</td>
 							<td value={snapshot[0]}>
