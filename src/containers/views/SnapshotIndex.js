@@ -13,7 +13,7 @@ class SnapshotIndex extends Component {
 	}
 
 	componentDidMount() {
-		fetch(`${API_URL}${this.props.activeCoin}`)
+		fetch(`${API_URL}/${this.props.activeCoin}`)
 			.then(response => response.json().then(json => response.ok ? json : Promise.reject(json)))
 			.then(response => {
 				this.setState({snapshots: response.snapshots});
