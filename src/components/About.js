@@ -155,6 +155,7 @@ const About = () => {
 				<li>ALWAYS keep software up to date with the latest security patches.</li>
 			</p>
 		</article>
+		<div className='PageEnd'/>
 	</div>
 };
 
