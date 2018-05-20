@@ -67,7 +67,7 @@ I used Arch for my Linode container because it is a minimalist-oriented GNU/Linu
 Arch Linux insists on early support of the most bleeding-edge new kernels and packages. This made it necessary to utilize Node's [npm n](https://www.npmjs.com/package/n) version management package to ensure compatibility with all the required packages of this project. In particular, the `node-sqlite3` package does not yet provide binaries ready for `Node.js (version 10.0)` (provided by the Arch Linux package repository). `n` allows for convenient access to the better-supported `Node.js (version 9.11.1)`.
 
 ### Security
-Server hardening and other security considerations a extremely important when crafting a hosting environment.
+Server hardening and other security considerations are extremely important when crafting a hosting environment.
 Although this is an extensive topic, the basic considerations in this project were:
 - Creating a non-root user account with restricted privileges and using sudo as a matter of course.
 - Disabling remote log-in to the root account.

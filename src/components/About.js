@@ -144,7 +144,7 @@ const About = () => {
 
 			<h3>Security / System Hardening</h3>
 			<p>
-				Server hardening and other security considerations a extremely important when crafting a hosting environment.
+				Server hardening and other security considerations are extremely important when s a hosting environment.
 				Although this is an extensive topic, the basic considerations in this project were:
 				<li>Creating a non-root user account with restricted privileges and using sudo as a matter of course.</li>
 				<li>Disabling remote log-in to the root account.</li>
