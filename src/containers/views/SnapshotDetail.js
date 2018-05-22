@@ -9,8 +9,7 @@ class SnapshotDetail extends Component {
 	constructor() {
 		super();
 
-		this.onSnapIncrement = this.onSnapIncrement.bind(this);
-		this.onSnapDecrement = this.onSnapDecrement.bind(this);
+		this.onSnapNavClick = this.onSnapNavClick.bind(this);
 		this.state = { snapDetails: null }
 	}
 
@@ -36,30 +35,8 @@ class SnapshotDetail extends Component {
 			return <span>{change}</span>;
 	}
 
-	onSnapIncrement() {
-		try {
-			if (this.props.snapshots
-				.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
-				.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
-				.filter(x => x[0] === this.props.activeSnapshot + 1).length === 1)
-
-				this.fetchDetailFromApi(this.props.activeSnapshot + 1);
-		} catch (e) {
-			console.error(e);
-		}
-	}
-
-	onSnapDecrement() {
-		try {
-			if (this.props.snapshots
-				.filter(snapshot => snapshot.symbol_safe === this.props.activeCoin)
-				.map(matchingSnapshot => matchingSnapshot.snapDateTimes)[0]
-				.filter(x => x[0] === this.props.activeSnapshot - 1).length === 1)
-
-				this.fetchDetailFromApi(this.props.activeSnapshot - 1);
-		} catch (e) {
-			console.error(e);
-		}
+	onSnapNavClick(event) {
+		this.fetchDetailFromApi(event.target.value);
 	}
 
 	render() {
@@ -72,9 +49,16 @@ class SnapshotDetail extends Component {
 					<div className='Symbol'>{coinSnap.symbol_full}</div>
 					<div className='Date'>{coinSnap.dateCreated}</div>
 					<div className='SnapShot'>Snapshot {coinSnap.ID}</div>
-
-					<button className='ShotNav left' onClick={this.onSnapDecrement}>Previous</button>
-					<button className='ShotNav right' onClick={this.onSnapIncrement}>Next</button>
+					<button className='ShotNav left'
+							value={this.props.prevSnapshot}
+							onClick={this.onSnapNavClick}
+							style={{display: this.props.prevSnapshot ? 'block' : 'none'}}
+					>Previous</button>
+					<button className='ShotNav right'
+							value={this.props.nextSnapshot}
+							onClick={this.onSnapNavClick}
+							style={{display: this.props.nextSnapshot ? 'block' : 'none'}}
+					>Next</button>
 				</div>
 				<table className="Table Table-container">
 					<tbody className="Table-body">
@@ -122,7 +106,8 @@ function mapStateToProps(state) {
 	return {
 		activeCoin: state.activeCoin,
 		activeSnapshot: state.activeSnapshot,
-		snapshots: state.allSnapshots,
+		prevSnapshot: state.allSnapshots[state.activeCoin][Number(state.activeSnapshot) - 1] ? Number(state.activeSnapshot) - 1 : null,
+		nextSnapshot: state.allSnapshots[state.activeCoin][Number(state.activeSnapshot) + 1] ? Number(state.activeSnapshot) + 1 : null,
 	}
 }
 
