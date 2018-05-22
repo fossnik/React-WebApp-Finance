@@ -36,19 +36,18 @@ class SnapshotIndex extends Component {
 					</tr>
 					</thead>
 					<tbody className="Table-body Click-able">
-					{this.state.snapshots.map(snapshot => (
+					{Object.keys(this.state.snapshots).map(snapId =>
 						<tr
-							key={snapshot[0]}
-							onClick={() => this.props.selectSnapshot(snapshot[0])}
+							key={snapId}
+							onClick={() => this.props.selectSnapshot(snapId)}
 						>
-							<td id='r' value={snapshot[0]}>
-								Scrape #{snapshot[0]}
+							<td id='r' value={snapId}>
+								Scrape #{snapId}
 							</td>
-							<td value={snapshot[0]}>
-								{snapshot[1]}
+							<td value={snapId}>
+								{this.state.snapshots[snapId]}
 							</td>
-						</tr>
-					))}
+						</tr>)}
 					</tbody>
 				</table>
 			</div>;
