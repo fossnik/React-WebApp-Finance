@@ -36,7 +36,7 @@ class SnapshotIndex extends Component {
 					</tr>
 					</thead>
 					<tbody className="Table-body Click-able">
-					{Object.keys(this.state.snapshots).map(snapId =>
+					{Object.keys(this.state.snapshots).reverse().map(snapId =>
 						<tr
 							key={snapId}
 							onClick={() => this.props.selectSnapshot(snapId)}
