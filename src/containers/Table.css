@@ -48,7 +48,7 @@
 
 .Row-header-coin, .Symbol {
 	font-size: xx-large;
-	color: #d01386 !important;
+	color: deeppink !important;
 	text-align: center;
 	padding: 20px;
 }
@@ -100,4 +100,8 @@
 	width: 50%;
 	padding: 3px;
 	margin-left: 25%;
+}
+
+.NaviBox-form {
+	padding: 8px;
 }
