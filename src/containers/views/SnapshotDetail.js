@@ -42,7 +42,7 @@ class SnapshotDetail extends Component {
 	render() {
 		const coinSnap = this.state.snapDetails;
 
-		if(coinSnap)
+		if (coinSnap)
 			return <div>
 				<div className="Detail-coin">
 					<div className='FullName'>{coinSnap.name}</div>

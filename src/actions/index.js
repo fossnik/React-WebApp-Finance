@@ -3,9 +3,8 @@ import { API_URL } from '../config';
 // helps keep our action types consistent between our action creators and reducers
 export const FETCH_COIN_INDEX = 'FETCH_COIN_INDEX';
 export const COIN_SELECTED = 'COIN_SELECTED';
-
-export const SNAPSHOT_SELECTED = 'SNAPSHOT_SELECTED';
 export const APPEND_SNAPSHOT_INDEX = 'APPEND_SNAPSHOT_INDEX';
+export const SNAPSHOT_SELECTED = 'SNAPSHOT_SELECTED';
 
 export function fetchCoinIndex() {
 	return fetch(API_URL)
@@ -19,25 +18,28 @@ export function fetchCoinIndex() {
 		.catch(error => console.error("Could not Load from API\n" + error))
 }
 
-export function selectCoin(coin) {
-	// selectCoin is an ActionCreator - it needs to return an action.
-	// an action is an object with a type property.
+export function selectCoin(symbol_safe) {
 	return {
 		type: COIN_SELECTED,
-		payload: coin,
+		payload: symbol_safe
 	}
 }
 
 export function selectSnapshot(snapId) {
 	return {
 		type: SNAPSHOT_SELECTED,
-		payload: snapId,
+		payload: snapId
 	}
 }
 
-export function appendSnapshotList(listOfSnapshots) {
-	return {
-		type: APPEND_SNAPSHOT_INDEX,
-		payload: listOfSnapshots
-	}
+export function fetchListOfSnapshotsForSingleCoin(symbol_safe) {
+	return fetch(`${API_URL}/${symbol_safe}`)
+		.then(response => response.json().then(json => response.ok ? json : Promise.reject(json)))
+		.then(response => {
+			return {
+				type: APPEND_SNAPSHOT_INDEX,
+				payload: { symbol_safe, snapshots: response.snapshots }
+			}
+		})
+		.catch(error => console.error("Could not Load from API\n" + error))
 }
