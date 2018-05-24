@@ -54,8 +54,7 @@
 }
 .FullName {
 	font-size: xx-large;
-	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-top: 20px;
 }
 
 .Date {
@@ -97,11 +96,10 @@
 }
 
 .NaviBox-element {
-	width: 50%;
 	padding: 3px;
-	margin-left: 25%;
 }
 
 .NaviBox-form {
-	padding: 8px;
+	padding: 10px;
+	text-align: center;
 }
