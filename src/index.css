@@ -102,3 +102,11 @@ article p li {
 article {
 	padding-bottom: 1em;
 }
+
+.Loading {
+	padding: 1em;
+	margin: 1em;
+	background-color: white;
+	text-align: center;
+	border: 8px solid crimson;
+}

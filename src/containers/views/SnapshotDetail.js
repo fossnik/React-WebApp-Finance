@@ -98,7 +98,7 @@ class SnapshotDetail extends Component {
 				</table>
 			</div>;
 		else
-			return <div>Loading Detail View...</div>
+			return <div className='Loading'>Loading Detail View...</div>
 	}
 }
 

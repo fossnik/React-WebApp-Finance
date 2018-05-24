@@ -52,7 +52,7 @@ class SnapshotIndex extends Component {
 				</table>
 			</div>;
 		else
-			return <div>Loading Snapshot Index...</div>
+			return <div className='Loading'>Loading Snapshot Index...</div>
 	}
 }
 

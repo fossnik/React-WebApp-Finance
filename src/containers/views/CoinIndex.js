@@ -34,7 +34,7 @@ class CoinIndex extends Component {
 				</table>
 			</div>;
 		else
-			return <div>Loading Coin Index...</div>
+			return <div className='Loading'>Loading Coin Index...</div>
 	}
 }
 
