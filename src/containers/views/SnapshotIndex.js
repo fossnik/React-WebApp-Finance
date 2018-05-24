@@ -2,28 +2,15 @@ import React, { Component } from 'react'
 import '../Table.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { selectSnapshot, appendSnapshotList } from "../../actions"
-import { API_URL } from "../../config"
+import { selectSnapshot, fetchListOfSnapshotsForSingleCoin } from "../../actions"
 
 class SnapshotIndex extends Component {
-	constructor() {
-		super();
-
-		this.state = { snapshots: null }
-	}
-
 	componentDidMount() {
-		fetch(`${API_URL}/${this.props.activeCoin}`)
-			.then(response => response.json().then(json => response.ok ? json : Promise.reject(json)))
-			.then(response => {
-				this.setState({snapshots: response.snapshots});
-				this.props.appendSnapshotList([this.props.activeCoin, response.snapshots])
-			})
-			.catch(error => console.error("Could not Load from API\n" + error))
+		this.props.fetchListOfSnapshotsForSingleCoin(this.props.activeCoin)
 	}
 
 	render() {
-		if (this.state.snapshots)
+		if (this.props.snapshotsForSingleCoin)
 			return <div className="Table-container">
 				<table className="Table">
 					<thead className="Table-head">
@@ -36,7 +23,7 @@ class SnapshotIndex extends Component {
 					</tr>
 					</thead>
 					<tbody className="Table-body Click-able">
-					{Object.keys(this.state.snapshots).reverse().map(snapId =>
+					{Object.keys(this.props.snapshotsForSingleCoin).reverse().map(snapId =>
 						<tr
 							key={snapId}
 							onClick={() => this.props.selectSnapshot(snapId)}
@@ -45,7 +32,7 @@ class SnapshotIndex extends Component {
 								Scrape #{snapId}
 							</td>
 							<td value={snapId}>
-								{new Date(this.state.snapshots[snapId]).toLocaleString()}
+								{new Date(this.props.snapshotsForSingleCoin[snapId]).toLocaleString()}
 							</td>
 						</tr>)}
 					</tbody>
@@ -57,14 +44,15 @@ class SnapshotIndex extends Component {
 }
 
 function mapStateToProps(state) {
-	return {
-		activeCoin: state.activeCoin,
-		activeCoinFullName: state.coins.filter(coin => coin.symbol_safe === state.activeCoin)[0].name,
-	}
+	const activeCoin = state.activeCoin;
+	const activeCoinFullName = state.coins.filter(coin => coin.symbol_safe === state.activeCoin)[0].name;
+	const snapshotsForSingleCoin = state.allSnapshots[state.activeCoin];
+
+	return { activeCoin, activeCoinFullName, snapshotsForSingleCoin }
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({selectSnapshot, appendSnapshotList}, dispatch)
+	return bindActionCreators({selectSnapshot, fetchListOfSnapshotsForSingleCoin}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SnapshotIndex)
