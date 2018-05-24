@@ -47,7 +47,7 @@ class SnapshotDetail extends Component {
 				<div className="Detail-coin">
 					<div className='FullName'>{coinSnap.name}</div>
 					<div className='Symbol'>{coinSnap.symbol_full}</div>
-					<div className='Date'>{coinSnap.dateCreated}</div>
+					<div className='Date'>{(new Date(coinSnap.dateCreated)).toLocaleString()}</div>
 					<div className='SnapShot'>Snapshot {coinSnap.ID}</div>
 					<button className='ShotNav left'
 							value={this.props.prevSnapshot}

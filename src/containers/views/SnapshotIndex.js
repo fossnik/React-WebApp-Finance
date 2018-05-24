@@ -45,7 +45,7 @@ class SnapshotIndex extends Component {
 								Scrape #{snapId}
 							</td>
 							<td value={snapId}>
-								{this.state.snapshots[snapId]}
+								{new Date(this.state.snapshots[snapId]).toLocaleString()}
 							</td>
 						</tr>)}
 					</tbody>
