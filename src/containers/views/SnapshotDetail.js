@@ -103,11 +103,17 @@ class SnapshotDetail extends Component {
 }
 
 function mapStateToProps(state) {
+	let prevSnapshot, nextSnapshot;
+	try {
+		prevSnapshot = state.allSnapshots[state.activeCoin][Number(state.activeSnapshot) - 1] ? Number(state.activeSnapshot) - 1 : null;
+		nextSnapshot = state.allSnapshots[state.activeCoin][Number(state.activeSnapshot) + 1] ? Number(state.activeSnapshot) + 1 : null;
+	} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
+
 	return {
 		activeCoin: state.activeCoin,
 		activeSnapshot: state.activeSnapshot,
-		prevSnapshot: state.allSnapshots[state.activeCoin][Number(state.activeSnapshot) - 1] ? Number(state.activeSnapshot) - 1 : null,
-		nextSnapshot: state.allSnapshots[state.activeCoin][Number(state.activeSnapshot) + 1] ? Number(state.activeSnapshot) + 1 : null,
+		prevSnapshot: prevSnapshot || null,
+		nextSnapshot: nextSnapshot || null,
 	}
 }
 
