@@ -125,10 +125,12 @@ const About = () => {
 				The two Node.js projects that comprise this interactive web application include the Express.js project
 				serving up API endpoints, and a React.js package to represent the queried data.
 				The least expensive service tier appears more than sufficient.
-				<code>Linux version 4.16.7-1-ARCH</code>
-				<code>1024MB RAM</code>
-				<code>4096GB HDD</code>
-				<code>1TB Data Cap</code>
+				<code>
+					<li>Linux version 4.16.7-1-ARCH</li>
+					<li>1024MB RAM</li>
+					<li>4096GB HDD</li>
+					<li>1TB Data Cap</li>
+				</code>
 			</p>
 
 			<h3><a href="https://www.archlinux.org">Arch Linux</a></h3>
