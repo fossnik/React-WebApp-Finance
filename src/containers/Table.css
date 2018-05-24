@@ -47,11 +47,10 @@
 }
 
 .Row-header-coin, .Symbol {
-	font-size: x-large;
+	font-size: xx-large;
 	color: #d01386 !important;
 	text-align: center;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	padding: 20px;
 }
 .FullName {
 	font-size: xx-large;
@@ -94,6 +93,7 @@
 
 #r {
 	text-align: right;
+	width: 50%;
 }
 
 .NaviBox-element {

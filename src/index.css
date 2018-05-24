@@ -5,6 +5,10 @@ body {
 	background-color: purple;
 }
 
+.draggable {
+	background-color: black;
+}
+
 .App-logo {
 	animation: App-logo-spin infinite 900ms linear !important;
 	height: 80px;
