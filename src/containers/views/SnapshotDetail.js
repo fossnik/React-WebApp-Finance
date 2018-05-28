@@ -1,20 +1,40 @@
 import React, { Component } from 'react'
 import { API_URL } from "../../config"
+import { connect } from 'react-redux'
 
 class SnapshotDetail extends Component {
 	constructor() {
 		super();
 
-		// this.onSnapNavClick = this.onSnapNavClick.bind(this);
-		this.state = { snapDetails: null }
+		this.onSnapNavClick = this.onSnapNavClick.bind(this);
+		this.state = {
+			snapDetails: null,
+			prevSnapshot: null,
+			nextSnapshot: null,
+		}
 	}
 
 	componentDidMount() {
+		this.fetchFromApi();
+	}
+
+	fetchFromApi() {
 		const { coin, snapshot } = this.props.match.params;
+
 		fetch(`${API_URL}/${coin}/${snapshot}`)
 			.then(response => response.json().then(json => response.ok ? json : Promise.reject(json)))
 			.then(response => this.setState({snapDetails: response.details}))
-			.catch(error => console.error("Could not Load from API\n" + error))
+			.catch(error => console.error("Could not Load from API\n" + error));
+
+		if (Object.keys(this.props.allSnapshots).length !== 0) {
+			try {
+				this.setState({prevSnapshot: this.props.allSnapshots[coin][Number(snapshot) - 1] ? Number(snapshot) - 1: null});
+			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
+
+			try {
+				this.setState({nextSnapshot: this.props.allSnapshots[coin][Number(snapshot) + 1] ? Number(snapshot) + 1: null});
+			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
+		}
 	}
 
 	static upOrDownArrow(change, symbol) {
@@ -26,9 +46,10 @@ class SnapshotDetail extends Component {
 			return <span>{change}</span>;
 	}
 
-	// onSnapNavClick(event) {
-	// 	this.fetchDetailFromApi(event.target.value);
-	// }
+	onSnapNavClick(event) {
+		this.fetchFromApi();
+		this.props.history.push(`/db/${this.props.match.params.coin}/${event.target.value}`);
+	}
 
 	render() {
 		const coinSnap = this.state.snapDetails;
@@ -40,16 +61,16 @@ class SnapshotDetail extends Component {
 					<div className='Symbol'>{coinSnap.symbol_full}</div>
 					<div className='Date'>{(new Date(coinSnap.dateCreated)).toLocaleString()}</div>
 					<div className='SnapShot'>Snapshot {coinSnap.ID}</div>
-					{/*<button className='ShotNav left'*/}
-							{/*value={this.props.prevSnapshot}*/}
-							{/*onClick={this.onSnapNavClick}*/}
-							{/*style={{display: this.props.prevSnapshot ? 'block' : 'none'}}*/}
-					{/*>Previous</button>*/}
-					{/*<button className='ShotNav right'*/}
-							{/*value={this.props.nextSnapshot}*/}
-							{/*onClick={this.onSnapNavClick}*/}
-							{/*style={{display: this.props.nextSnapshot ? 'block' : 'none'}}*/}
-					{/*>Next</button>*/}
+					<button className='ShotNav left'
+							value={this.state.prevSnapshot}
+							onClick={this.onSnapNavClick}
+							style={{display: this.state.prevSnapshot ? 'block' : 'none'}}
+					>Previous</button>
+					<button className='ShotNav right'
+							value={this.state.nextSnapshot}
+							onClick={this.onSnapNavClick}
+							style={{display: this.state.nextSnapshot ? 'block' : 'none'}}
+					>Next</button>
 				</div>
 				<table className="Table Table-container">
 					<tbody className="Table-body">
@@ -93,4 +114,10 @@ class SnapshotDetail extends Component {
 	}
 }
 
-export default SnapshotDetail
+function mapStateToProps(state) {
+	return {
+		allSnapshots: state.allSnapshots
+	}
+}
+
+export default connect(mapStateToProps)(SnapshotDetail)
