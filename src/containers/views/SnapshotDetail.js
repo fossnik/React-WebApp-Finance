@@ -1,26 +1,17 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import '../Table.css'
 import { API_URL } from "../../config"
-import { bindActionCreators } from 'redux'
-import { selectSnapshot } from "../../actions"
 
 class SnapshotDetail extends Component {
 	constructor() {
 		super();
 
-		this.onSnapNavClick = this.onSnapNavClick.bind(this);
+		// this.onSnapNavClick = this.onSnapNavClick.bind(this);
 		this.state = { snapDetails: null }
 	}
 
 	componentDidMount() {
-		this.fetchDetailFromApi(this.props.activeSnapshot)
-	}
-
-	fetchDetailFromApi(snapshot) {
-		this.props.selectSnapshot(snapshot);
-
-		fetch(`${API_URL}/${this.props.activeCoin}/${snapshot}`)
+		const { coin, snapshot } = this.props.match.params;
+		fetch(`${API_URL}/${coin}/${snapshot}`)
 			.then(response => response.json().then(json => response.ok ? json : Promise.reject(json)))
 			.then(response => this.setState({snapDetails: response.details}))
 			.catch(error => console.error("Could not Load from API\n" + error))
@@ -35,9 +26,9 @@ class SnapshotDetail extends Component {
 			return <span>{change}</span>;
 	}
 
-	onSnapNavClick(event) {
-		this.fetchDetailFromApi(event.target.value);
-	}
+	// onSnapNavClick(event) {
+	// 	this.fetchDetailFromApi(event.target.value);
+	// }
 
 	render() {
 		const coinSnap = this.state.snapDetails;
@@ -49,16 +40,16 @@ class SnapshotDetail extends Component {
 					<div className='Symbol'>{coinSnap.symbol_full}</div>
 					<div className='Date'>{(new Date(coinSnap.dateCreated)).toLocaleString()}</div>
 					<div className='SnapShot'>Snapshot {coinSnap.ID}</div>
-					<button className='ShotNav left'
-							value={this.props.prevSnapshot}
-							onClick={this.onSnapNavClick}
-							style={{display: this.props.prevSnapshot ? 'block' : 'none'}}
-					>Previous</button>
-					<button className='ShotNav right'
-							value={this.props.nextSnapshot}
-							onClick={this.onSnapNavClick}
-							style={{display: this.props.nextSnapshot ? 'block' : 'none'}}
-					>Next</button>
+					{/*<button className='ShotNav left'*/}
+							{/*value={this.props.prevSnapshot}*/}
+							{/*onClick={this.onSnapNavClick}*/}
+							{/*style={{display: this.props.prevSnapshot ? 'block' : 'none'}}*/}
+					{/*>Previous</button>*/}
+					{/*<button className='ShotNav right'*/}
+							{/*value={this.props.nextSnapshot}*/}
+							{/*onClick={this.onSnapNavClick}*/}
+							{/*style={{display: this.props.nextSnapshot ? 'block' : 'none'}}*/}
+					{/*>Next</button>*/}
 				</div>
 				<table className="Table Table-container">
 					<tbody className="Table-body">
@@ -102,23 +93,4 @@ class SnapshotDetail extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	let prevSnapshot, nextSnapshot;
-	try {
-		prevSnapshot = state.allSnapshots[state.activeCoin][Number(state.activeSnapshot) - 1] ? Number(state.activeSnapshot) - 1 : null;
-		nextSnapshot = state.allSnapshots[state.activeCoin][Number(state.activeSnapshot) + 1] ? Number(state.activeSnapshot) + 1 : null;
-	} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
-
-	return {
-		activeCoin: state.activeCoin,
-		activeSnapshot: state.activeSnapshot,
-		prevSnapshot: prevSnapshot || null,
-		nextSnapshot: nextSnapshot || null,
-	}
-}
-
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({selectSnapshot}, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SnapshotDetail)
+export default SnapshotDetail

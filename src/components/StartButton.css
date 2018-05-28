@@ -34,3 +34,9 @@ fieldset[disabled] .StartButton.active {
 	background-color: #7327D0;
 	border-color: #100060;
 }
+
+.StartButton-container {
+	text-align: center;
+	background-color: #48247A;
+	padding: 4px;
+}

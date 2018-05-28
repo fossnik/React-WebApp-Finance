@@ -1,25 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-import About from './components/About'
-import StartButton from './components/StartButton'
 
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import reducers from './reducers'
 import promise from 'redux-promise'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-ReactDOM.render(<StartButton/>, document.querySelector('.StartButton-container'));
-ReactDOM.render(<About/>, document.getElementById('root'));
+import CoinIndex from './containers/views/CoinIndex'
+import SnapshotIndex from './containers/views/SnapshotIndex'
+import SnapshotDetail from './containers/views/SnapshotDetail'
+import About from './components/About'
 
 // redux
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-// app start button
-document.querySelector('.StartButton').onclick = () => {
-	document.querySelector('.StartButton').style.display = "none";
-	ReactDOM.render(
-		<Provider store={createStoreWithMiddleware(reducers)}>
-			<App/>
-		</Provider>, document.getElementById('root'))
+const Root = () => {
+	return <Provider store={createStoreWithMiddleware(reducers)}>
+		<BrowserRouter>
+			<Switch>
+				<Route path="/db/:coin/:snapshot" component={SnapshotDetail}/>
+				<Route path="/db/:coin/" component={SnapshotIndex}/>
+				<Route path="/db/" component={CoinIndex}/>
+				<Route path="/" component={About}/>
+			</Switch>
+		</BrowserRouter>
+	</Provider>
 };
+
+ReactDOM.render(<Root/>, document.getElementById('root'));

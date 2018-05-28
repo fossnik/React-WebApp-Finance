@@ -2,7 +2,7 @@ import React from "react"
 import './StartButton.css'
 
 const StartButton = () => {
-	return <button className="StartButton">Start</button>
+	return <a className="StartButton" href="/db/">Start</a>
 };
 
 export default StartButton

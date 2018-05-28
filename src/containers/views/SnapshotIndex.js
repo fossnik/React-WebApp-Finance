@@ -1,17 +1,35 @@
 import React, { Component } from 'react'
-import '../Table.css'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { selectSnapshot, fetchListOfSnapshotsForSingleCoin } from "../../actions"
+import { fetchListOfSnapshotsForSingleCoin } from "../../actions"
 
 class SnapshotIndex extends Component {
+	constructor(props) {
+		super(props);
+
+		this.onSnapshotClick = this.onSnapshotClick.bind(this);
+
+		this.state = {
+			activeCoin: props.match.params.coin,
+		}
+	}
+
+	componentDidMount() {
+		this.props.fetchListOfSnapshotsForSingleCoin(this.state.activeCoin)
+	}
+
+	onSnapshotClick(snapId) {
+		this.props.history.push(`/db/${this.state.activeCoin}/${snapId}`);
+	}
+
 	render() {
-		if (this.props.snapshotsForSingleCoin)
+		const snapshotsOfThisCoin = this.props.allSnapshots[this.state.activeCoin];
+
+		if (snapshotsOfThisCoin)
 			return <div className="Table-container">
 				<table className="Table">
 					<thead className="Table-head">
 					<tr>
-						<th className="Row-header-coin" colSpan='2'>{this.props.activeCoinFullName}</th>
+						<th className="Row-header-coin" colSpan='2'>{this.state.activeCoin}</th>
 					</tr>
 					<tr>
 						<th>Selenium Web Scrape</th>
@@ -19,38 +37,30 @@ class SnapshotIndex extends Component {
 					</tr>
 					</thead>
 					<tbody className="Table-body Click-able">
-					{Object.keys(this.props.snapshotsForSingleCoin).reverse().map(snapId =>
+					{Object.keys(snapshotsOfThisCoin).reverse().map(snapId =>
 						<tr
 							key={snapId}
-							onClick={() => this.props.selectSnapshot(snapId)}
+							onClick={() => this.onSnapshotClick(snapId)}
 						>
 							<td id='r' value={snapId}>
 								Scrape #{snapId}
 							</td>
 							<td value={snapId}>
-								{new Date(this.props.snapshotsForSingleCoin[snapId]).toLocaleString()}
+								{new Date(snapshotsOfThisCoin[snapId]).toLocaleString()}
 							</td>
 						</tr>)}
 					</tbody>
 				</table>
 			</div>;
-		else {
-			this.props.fetchListOfSnapshotsForSingleCoin(this.props.activeCoin);
+		else
 			return <div className='Loading'>Loading Snapshot Index...</div>
-		}
 	}
 }
 
 function mapStateToProps(state) {
-	const activeCoin = state.activeCoin;
-	const activeCoinFullName = state.coins.filter(coin => coin.symbol_safe === state.activeCoin)[0].name;
-	const snapshotsForSingleCoin = state.allSnapshots[state.activeCoin];
-
-	return { activeCoin, activeCoinFullName, snapshotsForSingleCoin }
+	return {
+		allSnapshots: state.allSnapshots
+	}
 }
 
-function mapDispatchToProps(dispatch) {
-	return bindActionCreators({selectSnapshot, fetchListOfSnapshotsForSingleCoin}, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SnapshotIndex)
+export default connect(mapStateToProps, {fetchListOfSnapshotsForSingleCoin})(SnapshotIndex)
