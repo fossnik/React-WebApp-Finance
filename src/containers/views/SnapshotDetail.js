@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { API_URL } from "../../config"
 import { connect } from 'react-redux'
+import CoinMenu from '../navigation/Menu-coins'
 
 class SnapshotDetail extends Component {
 	constructor() {
@@ -56,6 +57,7 @@ class SnapshotDetail extends Component {
 
 		if (coinSnap)
 			return <div>
+				<CoinMenu activeCoin={this.props.match.params.coin} history={this.props.history}/>
 				<div className="Detail-coin">
 					<div className='FullName'>{coinSnap.name}</div>
 					<div className='Symbol'>{coinSnap.symbol_full}</div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchListOfSnapshotsForSingleCoin } from "../../actions"
+import CoinMenu from '../navigation/Menu-coins'
 
 class SnapshotIndex extends Component {
 	constructor(props) {
@@ -23,9 +24,9 @@ class SnapshotIndex extends Component {
 
 	render() {
 		const snapshotsOfThisCoin = this.props.allSnapshots[this.state.activeCoin];
-
 		if (snapshotsOfThisCoin)
-			return <div className="Table-container">
+			return <div>
+				<CoinMenu activeCoin={this.props.match.params.coin} history={this.props.history}/>
 				<table className="Table">
 					<thead className="Table-head">
 					<tr>

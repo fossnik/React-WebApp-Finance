@@ -111,11 +111,8 @@ article {
 	border: 8px solid mediumpurple;
 }
 
-.Table-container {
-	overflow-x: auto; /* Needed for table to be responsive */
-}
-
 .Table {
+	overflow-x: auto; /* Needed for table to be responsive */
 	width: 100%;
 }
 

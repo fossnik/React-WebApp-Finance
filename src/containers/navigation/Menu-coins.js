@@ -9,7 +9,7 @@ class MenuCoins extends Component {
 	}
 
 	onCoinChange(event) {
-		this.props.history.push(`/${event.target.value}`);
+		this.props.history.push(`/db/${event.target.value}`);
 	}
 
 	render() {
@@ -39,4 +39,5 @@ function mapStateToProps(state) {
 		coins: state.coins,
 	}
 }
+
 export default connect(mapStateToProps)(MenuCoins)
