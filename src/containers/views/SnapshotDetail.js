@@ -1,41 +1,22 @@
 import React, { Component } from 'react'
-import { API_URL } from "../../config"
 import { connect } from 'react-redux'
+import { fetchSnapshotDetail } from "../../actions"
 import CoinMenu from '../navigation/Menu-coins'
 
 class SnapshotDetail extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		this.onSnapNavClick = this.onSnapNavClick.bind(this);
+
 		this.state = {
-			snapDetails: null,
-			prevSnapshot: null,
-			nextSnapshot: null,
+			activeCoin: props.match.params.coin,
+			activeSnapId: props.match.params.snapshot,
 		}
 	}
 
 	componentDidMount() {
-		this.fetchFromApi();
-	}
-
-	fetchFromApi() {
-		const { coin, snapshot } = this.props.match.params;
-
-		fetch(`${API_URL}/${coin}/${snapshot}`)
-			.then(response => response.json().then(json => response.ok ? json : Promise.reject(json)))
-			.then(response => this.setState({snapDetails: response.details}))
-			.catch(error => console.error("Could not Load from API\n" + error));
-
-		if (Object.keys(this.props.allSnapshots).length !== 0) {
-			try {
-				this.setState({prevSnapshot: this.props.allSnapshots[coin][Number(snapshot) - 1] ? Number(snapshot) - 1: null});
-			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
-
-			try {
-				this.setState({nextSnapshot: this.props.allSnapshots[coin][Number(snapshot) + 1] ? Number(snapshot) + 1: null});
-			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
-		}
+		this.props.fetchSnapshotDetail(this.props.match.params);
 	}
 
 	static upOrDownArrow(change, symbol) {
@@ -48,78 +29,88 @@ class SnapshotDetail extends Component {
 	}
 
 	onSnapNavClick(event) {
-		this.fetchFromApi();
-		this.props.history.push(`/db/${this.props.match.params.coin}/${event.target.value}`);
+		this.props.history.push(`/db/${this.state.activeCoin}/${event.target.value}`);
 	}
 
 	render() {
-		const coinSnap = this.state.snapDetails;
+		try {
+			const coin = this.state.activeCoin;
+			const snap = this.props.allSnapshots.details[coin][this.state.activeSnapId];
+			let prevSnapshot = null, nextSnapshot = null;
 
-		if (coinSnap)
+			try {
+				prevSnapshot = this.props.allSnapshots.scrapeDates[coin][Number(snap.ID) - 1] ? Number(snap.ID) - 1 : null;
+			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
+
+			try {
+				nextSnapshot = this.props.allSnapshots.scrapeDates[coin][Number(snap.ID) + 1] ? Number(snap.ID) + 1 : null;
+			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
+
 			return <div>
-				<CoinMenu activeCoin={this.props.match.params.coin} history={this.props.history}/>
+				<CoinMenu activeCoin={this.state.activeCoin} history={this.props.history}/>
 				<div className="Detail-coin">
-					<div className='FullName'>{coinSnap.name}</div>
-					<div className='Symbol'>{coinSnap.symbol_full}</div>
-					<div className='Date'>{(new Date(coinSnap.dateCreated)).toLocaleString()}</div>
-					<div className='SnapShot'>Snapshot {coinSnap.ID}</div>
+					<div className='FullName'>{snap.name}</div>
+					<div className='Symbol'>{snap.symbol_full}</div>
+					<div className='Date'>{(new Date(snap.dateCreated)).toLocaleString()}</div>
+					<div className='SnapShot'>Snapshot {snap.ID}</div>
 					<button className='ShotNav left'
-							value={this.state.prevSnapshot}
+							value={prevSnapshot}
 							onClick={this.onSnapNavClick}
-							style={{display: this.state.prevSnapshot ? 'block' : 'none'}}
+							style={{display: prevSnapshot ? 'block' : 'none'}}
 					>Previous</button>
 					<button className='ShotNav right'
-							value={this.state.nextSnapshot}
+							value={nextSnapshot}
 							onClick={this.onSnapNavClick}
-							style={{display: this.state.nextSnapshot ? 'block' : 'none'}}
+							style={{display: nextSnapshot ? 'block' : 'none'}}
 					>Next</button>
 				</div>
 				<table className="Table Table-container">
 					<tbody className="Table-body">
 					<tr>
 						<td id='r'>Price</td>
-						<td>{coinSnap.price} $</td>
+						<td>{snap.price} $</td>
 					</tr>
 					<tr>
 						<td id='r'>Change</td>
-						<td>{SnapshotDetail.upOrDownArrow(coinSnap.change, '$')}</td>
+						<td>{SnapshotDetail.upOrDownArrow(snap.change, '$')}</td>
 					</tr>
 					<tr>
 						<td id='r'>Percent Change</td>
-						<td>{SnapshotDetail.upOrDownArrow(coinSnap.pChange, '%')}</td>
+						<td>{SnapshotDetail.upOrDownArrow(snap.pChange, '%')}</td>
 					</tr>
 					<tr>
 						<td id='r'>Market Cap</td>
-						<td>{coinSnap.marketCap}</td>
+						<td>{snap.marketCap}</td>
 					</tr>
 					<tr>
 						<td id='r'>Volume</td>
-						<td>{coinSnap.volume}</td>
+						<td>{snap.volume}</td>
 					</tr>
 					<tr>
 						<td id='r'>Volume 24h</td>
-						<td>{coinSnap.volume24h}</td>
+						<td>{snap.volume24h}</td>
 					</tr>
 					<tr>
 						<td id='r'>Total Volume 24h</td>
-						<td>{coinSnap.totalVolume24h}</td>
+						<td>{snap.totalVolume24h}</td>
 					</tr>
 					<tr>
 						<td id='r'>Circulating Suppy</td>
-						<td>{coinSnap.circulatingSupply}</td>
+						<td>{snap.circulatingSupply}</td>
 					</tr>
 					</tbody>
 				</table>
-			</div>;
-		else
+			</div>
+		} catch (e) {
 			return <div className='Loading'>Loading Detail View...</div>
+		}
 	}
 }
 
 function mapStateToProps(state) {
 	return {
-		allSnapshots: state.allSnapshots
+		allSnapshots: state.allSnapshots,
 	}
 }
 
-export default connect(mapStateToProps)(SnapshotDetail)
+export default connect(mapStateToProps, {fetchSnapshotDetail})(SnapshotDetail)

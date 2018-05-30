@@ -23,8 +23,9 @@ class SnapshotIndex extends Component {
 	}
 
 	render() {
-		const snapshotsOfThisCoin = this.props.allSnapshots[this.state.activeCoin];
-		if (snapshotsOfThisCoin)
+		try {
+			const snapshotsOfThisCoin = this.props.allSnapshots.scrapeDates[this.state.activeCoin];
+
 			return <div>
 				<CoinMenu activeCoin={this.props.match.params.coin} history={this.props.history}/>
 				<table className="Table">
@@ -52,9 +53,10 @@ class SnapshotIndex extends Component {
 						</tr>)}
 					</tbody>
 				</table>
-			</div>;
-		else
+			</div>
+		} catch (e) {
 			return <div className='Loading'>Loading Snapshot Index...</div>
+		}
 	}
 }
 
