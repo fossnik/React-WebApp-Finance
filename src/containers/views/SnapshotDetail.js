@@ -19,12 +19,8 @@ class SnapshotDetail extends Component {
 		this.props.fetchSnapshotDetail(this.props.match.params);
 
 		// load scrapeDates index if not exist
-		try {
-			if (this.props.allSnapshots.scrapeDates[this.state.activeCoin])
-				console.log("scrapeDates index found for " + this.state.activeCoin)
-		} catch (e) {
-			this.props.fetchListOfSnapshotsForSingleCoin(this.state.activeCoin)
-		}
+		if (!Object.keys(this.props.allSnapshots.scrapeDates).includes(this.state.activeCoin))
+			this.props.fetchListOfSnapshotsForSingleCoin(this.state.activeCoin);
 	}
 
 	static upOrDownArrow(change, symbol) {
