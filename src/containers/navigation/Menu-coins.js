@@ -28,11 +28,10 @@ class MenuCoins extends Component {
 					className='NaviBox-element'
 				>
 					{
-						this.props.coins.map(coin => {
-							return <option key={coin.symbol_safe} value={coin.symbol_safe}>
+						this.props.coins.map(coin =>
+							<option key={coin.symbol_safe} value={coin.symbol_safe}>
 								{coin.name}
-							</option>
-						})
+							</option>)
 					}
 				</select>
 			</div>;

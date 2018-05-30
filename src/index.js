@@ -15,8 +15,8 @@ import About from './components/About'
 // redux
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 
-const Root = () => {
-	return <Provider store={createStoreWithMiddleware(reducers)}>
+const Root = () =>
+	<Provider store={createStoreWithMiddleware(reducers)}>
 		<BrowserRouter>
 			<Switch>
 				<Route path="/db/:coin/:snapshot" component={SnapshotDetail}/>
@@ -25,7 +25,6 @@ const Root = () => {
 				<Route path="/" component={About}/>
 			</Switch>
 		</BrowserRouter>
-	</Provider>
-};
+	</Provider>;
 
 ReactDOM.render(<Root/>, document.getElementById('root'));
