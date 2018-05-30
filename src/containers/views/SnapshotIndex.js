@@ -27,7 +27,11 @@ class SnapshotIndex extends Component {
 	}
 
 	render() {
-		try {
+		if (this.props.coins &&
+			this.props.coins.find(coin => coin.symbol_safe === this.state.activeCoin) &&
+			Object.keys(this.props.allSnapshots).includes("scrapeDates") &&
+			Object.keys(this.props.allSnapshots.scrapeDates).includes(this.state.activeCoin))
+		{
 			const snapshotsOfThisCoin = this.props.allSnapshots.scrapeDates[this.state.activeCoin];
 			const coinFullName = this.props.coins.find(coin => coin.symbol_safe === this.state.activeCoin).name;
 
@@ -59,9 +63,9 @@ class SnapshotIndex extends Component {
 					</tbody>
 				</table>
 			</div>
-		} catch (e) {
-			return <div className='Loading'>Loading Snapshot Index...</div>
 		}
+
+		return <div className='Loading'>Loading Snapshot Index...</div>
 	}
 }
 

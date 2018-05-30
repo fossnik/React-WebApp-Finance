@@ -40,8 +40,8 @@ class SnapshotDetail extends Component {
 		const coin = this.state.activeCoin;
 
 		if (Object.keys(this.props.allSnapshots).includes("details") &&
-			Object.keys(this.props.allSnapshots).includes("scrapeDates") &&
 			Object.keys(this.props.allSnapshots.details).includes(coin) &&
+			Object.keys(this.props.allSnapshots).includes("scrapeDates") &&
 			Object.keys(this.props.allSnapshots.scrapeDates).includes(coin))
 		{
 			const snap = this.props.allSnapshots.details[coin][this.state.activeSnapId];
