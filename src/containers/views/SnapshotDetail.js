@@ -45,9 +45,8 @@ class SnapshotDetail extends Component {
 			Object.keys(this.props.allSnapshots.scrapeDates).includes(coin))
 		{
 			const snap = this.props.allSnapshots.details[coin][this.state.activeSnapId];
-			const prevSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[coin]).includes(Number(snap.ID) - 1) ? Number(snap.ID) - 1 : null;
-			const nextSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[coin]).includes(Number(snap.ID) + 1) ? Number(snap.ID) + 1 : null;
-
+			const prevSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[coin]).includes(String(Number(snap.ID) - 1)) ? Number(snap.ID) - 1 : null;
+			const nextSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[coin]).includes(String(Number(snap.ID) + 1)) ? Number(snap.ID) + 1 : null;
 			return <div>
 				<CoinMenu activeCoin={this.state.activeCoin} history={this.props.history}/>
 				<div className="Detail-coin">
