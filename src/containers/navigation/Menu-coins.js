@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fetchCoinIndex } from "../../actions"
 
 class MenuCoins extends Component {
 	constructor() {
@@ -8,8 +9,14 @@ class MenuCoins extends Component {
 		this.onCoinChange = this.onCoinChange.bind(this);
 	}
 
+	componentDidMount() {
+		// load coin index index if not exist
+		if (this.props.coins === null)
+			this.props.fetchCoinIndex()
+	}
+
 	onCoinChange(event) {
-		this.props.history.push(`/db/${event.target.value}`);
+		this.props.history.push(`/db/${event.target.value}`)
 	}
 
 	render() {
@@ -40,4 +47,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps)(MenuCoins)
+export default connect(mapStateToProps, {fetchCoinIndex})(MenuCoins)

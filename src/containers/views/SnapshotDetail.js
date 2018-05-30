@@ -21,7 +21,7 @@ class SnapshotDetail extends Component {
 		// load scrapeDates index if not exist
 		try {
 			if (this.props.allSnapshots.scrapeDates[this.state.activeCoin])
-				console.log("scrapeDates index found for " + this.state.activeCoin);
+				console.log("scrapeDates index found for " + this.state.activeCoin)
 		} catch (e) {
 			this.props.fetchListOfSnapshotsForSingleCoin(this.state.activeCoin)
 		}
@@ -37,7 +37,7 @@ class SnapshotDetail extends Component {
 	}
 
 	onSnapNavClick(event) {
-		this.props.history.push(`/db/${this.state.activeCoin}/${event.target.value}`);
+		this.props.history.push(`/db/${this.state.activeCoin}/${event.target.value}`)
 	}
 
 	render() {
@@ -47,11 +47,11 @@ class SnapshotDetail extends Component {
 			let prevSnapshot = null, nextSnapshot = null;
 
 			try {
-				prevSnapshot = this.props.allSnapshots.scrapeDates[coin][Number(snap.ID) - 1] ? Number(snap.ID) - 1 : null;
+				prevSnapshot = this.props.allSnapshots.scrapeDates[coin][Number(snap.ID) - 1] ? Number(snap.ID) - 1 : null
 			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
 
 			try {
-				nextSnapshot = this.props.allSnapshots.scrapeDates[coin][Number(snap.ID) + 1] ? Number(snap.ID) + 1 : null;
+				nextSnapshot = this.props.allSnapshots.scrapeDates[coin][Number(snap.ID) + 1] ? Number(snap.ID) + 1 : null
 			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
 
 			return <div>

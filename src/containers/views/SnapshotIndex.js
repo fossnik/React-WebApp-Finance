@@ -19,7 +19,7 @@ class SnapshotIndex extends Component {
 	}
 
 	onSnapshotClick(snapId) {
-		this.props.history.push(`/db/${this.state.activeCoin}/${snapId}`);
+		this.props.history.push(`/db/${this.state.activeCoin}/${snapId}`)
 	}
 
 	render() {
@@ -27,7 +27,7 @@ class SnapshotIndex extends Component {
 			const snapshotsOfThisCoin = this.props.allSnapshots.scrapeDates[this.state.activeCoin];
 
 			return <div>
-				<CoinMenu activeCoin={this.props.match.params.coin} history={this.props.history}/>
+				<CoinMenu activeCoin={this.state.activeCoin} history={this.props.history}/>
 				<table className="Table">
 					<thead className="Table-head">
 					<tr>

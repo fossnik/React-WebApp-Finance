@@ -14,7 +14,7 @@ class CoinIndex extends Component {
 	}
 
 	onCoinClick(symbol_safe) {
-		this.props.history.push(`/db/${symbol_safe}`);
+		this.props.history.push(`/db/${symbol_safe}`)
 	}
 
 	render() {
@@ -43,7 +43,7 @@ class CoinIndex extends Component {
 				</table>
 			</div>;
 		else
-			return <div className='Loading'>Loading Coin Index...</div>
+			return <div className='Loading'>Loading Coin Index...</div>;
 	}
 }
 
