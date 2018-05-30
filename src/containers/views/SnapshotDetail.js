@@ -19,7 +19,7 @@ class SnapshotDetail extends Component {
 		this.props.fetchSnapshotDetail(this.props.match.params);
 
 		// load scrapeDates index if not exist
-		if (!Object.keys(this.props.allSnapshots.scrapeDates).includes(this.state.activeCoin))
+		if (Object.keys(this.props.allSnapshots).length === 0 || !Object.keys(this.props.allSnapshots.scrapeDates).includes(this.state.activeCoin))
 			this.props.fetchListOfSnapshotsForSingleCoin(this.state.activeCoin);
 	}
 
@@ -37,18 +37,16 @@ class SnapshotDetail extends Component {
 	}
 
 	render() {
-		try {
-			const coin = this.state.activeCoin;
+		const coin = this.state.activeCoin;
+
+		if (Object.keys(this.props.allSnapshots).includes("details") &&
+			Object.keys(this.props.allSnapshots).includes("scrapeDates") &&
+			Object.keys(this.props.allSnapshots.details).includes(coin) &&
+			Object.keys(this.props.allSnapshots.scrapeDates).includes(coin))
+		{
 			const snap = this.props.allSnapshots.details[coin][this.state.activeSnapId];
-			let prevSnapshot = null, nextSnapshot = null;
-
-			try {
-				prevSnapshot = this.props.allSnapshots.scrapeDates[coin][Number(snap.ID) - 1] ? Number(snap.ID) - 1 : null
-			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
-
-			try {
-				nextSnapshot = this.props.allSnapshots.scrapeDates[coin][Number(snap.ID) + 1] ? Number(snap.ID) + 1 : null
-			} catch (e) { console.error("Type Error - Cannot Read Undefined" + e); }
+			const prevSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[coin]).includes(Number(snap.ID) - 1) ? Number(snap.ID) - 1 : null;
+			const nextSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[coin]).includes(Number(snap.ID) + 1) ? Number(snap.ID) + 1 : null;
 
 			return <div>
 				<CoinMenu activeCoin={this.state.activeCoin} history={this.props.history}/>
@@ -61,12 +59,14 @@ class SnapshotDetail extends Component {
 							value={prevSnapshot}
 							onClick={this.onSnapNavClick}
 							style={{display: prevSnapshot ? 'block' : 'none'}}
-					>Previous</button>
+					>Previous
+					</button>
 					<button className='ShotNav right'
 							value={nextSnapshot}
 							onClick={this.onSnapNavClick}
 							style={{display: nextSnapshot ? 'block' : 'none'}}
-					>Next</button>
+					>Next
+					</button>
 				</div>
 				<table className="Table Table-container">
 					<tbody className="Table-body">
@@ -105,9 +105,9 @@ class SnapshotDetail extends Component {
 					</tbody>
 				</table>
 			</div>
-		} catch (e) {
-			return <div className='Loading'>Loading Detail View...</div>
 		}
+
+		return <div className='Loading'>Loading Detail View...</div>
 	}
 }
 
