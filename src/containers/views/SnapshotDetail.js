@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchSnapshotDetail } from "../../actions"
+import { fetchSnapshotDetail, fetchListOfSnapshotsForSingleCoin } from "../../actions"
 import CoinMenu from '../navigation/Menu-coins'
 
 class SnapshotDetail extends Component {
@@ -17,6 +17,14 @@ class SnapshotDetail extends Component {
 
 	componentDidMount() {
 		this.props.fetchSnapshotDetail(this.props.match.params);
+
+		// load scrapeDates index if not exist
+		try {
+			if (this.props.allSnapshots.scrapeDates[this.state.activeCoin])
+				console.log("scrapeDates index found for " + this.state.activeCoin);
+		} catch (e) {
+			this.props.fetchListOfSnapshotsForSingleCoin(this.state.activeCoin)
+		}
 	}
 
 	static upOrDownArrow(change, symbol) {
@@ -113,4 +121,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps, {fetchSnapshotDetail})(SnapshotDetail)
+export default connect(mapStateToProps, {fetchSnapshotDetail, fetchListOfSnapshotsForSingleCoin})(SnapshotDetail)
