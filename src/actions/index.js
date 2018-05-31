@@ -1,4 +1,4 @@
-import { API_URL } from '../config';
+import { API_URL } from '../config'
 
 // helps keep our action types consistent between our action creators and reducers
 export const FETCH_COIN_INDEX = 'FETCH_COIN_INDEX';

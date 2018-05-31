@@ -4,23 +4,18 @@ import { fetchSnapshotDetail, fetchListOfSnapshotsForSingleCoin } from "../../ac
 import CoinMenu from '../navigation/Menu-coins'
 
 class SnapshotDetail extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 
 		this.onSnapNavClick = this.onSnapNavClick.bind(this);
-
-		this.state = {
-			activeCoin: props.match.params.coin,
-			activeSnapId: props.match.params.snapshot,
-		}
 	}
 
 	componentDidMount() {
 		this.props.fetchSnapshotDetail(this.props.match.params);
 
 		// load scrapeDates index if not exist
-		if (Object.keys(this.props.allSnapshots).length === 0 || !Object.keys(this.props.allSnapshots.scrapeDates).includes(this.state.activeCoin))
-			this.props.fetchListOfSnapshotsForSingleCoin(this.state.activeCoin);
+		if (Object.keys(this.props.allSnapshots).length === 0 || !Object.keys(this.props.allSnapshots.scrapeDates).includes(this.props.match.params.coin))
+			this.props.fetchListOfSnapshotsForSingleCoin(this.props.match.params.coin);
 	}
 
 	static upOrDownArrow(change, symbol) {
@@ -33,22 +28,24 @@ class SnapshotDetail extends Component {
 	}
 
 	onSnapNavClick(event) {
-		this.props.history.push(`/db/${this.state.activeCoin}/${event.target.value}`)
+		this.props.match.params.snapshot = event.target.value;
+		this.props.fetchSnapshotDetail(this.props.match.params);
+		this.props.history.push(`/db/${this.props.match.params.coin}/${event.target.value}`)
 	}
 
 	render() {
-		const coin = this.state.activeCoin;
-
 		if (Object.keys(this.props.allSnapshots).includes("details") &&
-			Object.keys(this.props.allSnapshots.details).includes(coin) &&
+			Object.keys(this.props.allSnapshots.details).includes(this.props.match.params.coin) &&
 			Object.keys(this.props.allSnapshots).includes("scrapeDates") &&
-			Object.keys(this.props.allSnapshots.scrapeDates).includes(coin))
+			Object.keys(this.props.allSnapshots.scrapeDates).includes(this.props.match.params.coin) &&
+			Object.keys(this.props.allSnapshots.details[this.props.match.params.coin]).includes(this.props.match.params.snapshot))
 		{
-			const snap = this.props.allSnapshots.details[coin][this.state.activeSnapId];
-			const prevSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[coin]).includes(String(Number(snap.ID) - 1)) ? Number(snap.ID) - 1 : null;
-			const nextSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[coin]).includes(String(Number(snap.ID) + 1)) ? Number(snap.ID) + 1 : null;
+			const snap = this.props.allSnapshots.details[this.props.match.params.coin][this.props.match.params.snapshot];
+			const prevSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[this.props.match.params.coin]).includes(String(Number(snap.ID) - 1)) ? Number(snap.ID) - 1 : null;
+			const nextSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[this.props.match.params.coin]).includes(String(Number(snap.ID) + 1)) ? Number(snap.ID) + 1 : null;
+
 			return <div>
-				<CoinMenu activeCoin={this.state.activeCoin} history={this.props.history}/>
+				<CoinMenu activeCoin={this.props.match.params.coin} history={this.props.history}/>
 				<div className="Detail-coin">
 					<div className='FullName'>{snap.name}</div>
 					<div className='Symbol'>{snap.symbol_full}</div>
