@@ -3,12 +3,8 @@ import { connect } from 'react-redux'
 import { fetchCoinIndex } from "../../actions"
 
 class MenuCoins extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			activeCoin: props.activeCoin
-		};
+	constructor() {
+		super();
 
 		this.onCoinChange = this.onCoinChange.bind(this);
 	}
@@ -20,7 +16,6 @@ class MenuCoins extends Component {
 	}
 
 	onCoinChange(event) {
-		this.setState({activeCoin: event.target.value});
 		this.props.history.push(`/db/${event.target.value}`);
 	}
 
@@ -28,7 +23,7 @@ class MenuCoins extends Component {
 		if (this.props.coins)
 			return <div className='NaviBox-form'>
 					<select
-					value={this.state.activeCoin || ''}
+					value={this.props.activeCoin || ''}
 					onChange={this.onCoinChange}
 					className='NaviBox-element'
 				>

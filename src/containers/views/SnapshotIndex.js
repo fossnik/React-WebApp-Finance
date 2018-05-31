@@ -29,7 +29,7 @@ class SnapshotIndex extends Component {
 				const coinFullName = this.props.coins.find(coin => coin.symbol_safe === this.props.match.params.coin).name;
 
 				return <div>
-					<CoinMenu activeCoin={this.props.match.params.coin} history={this.props.history}/>
+					<CoinMenu history={this.props.history} activeCoin={this.props.match.params.coin}/>
 					<table className="Table">
 						<thead className="Table-head">
 						<tr>
