@@ -45,7 +45,7 @@ class SnapshotDetail extends Component {
 			const nextSnapshot = Object.keys(this.props.allSnapshots.scrapeDates[this.props.match.params.coin]).includes(String(Number(snap.ID) + 1)) ? Number(snap.ID) + 1 : null;
 
 			return <div>
-				<CoinMenu activeCoin={this.props.match.params.coin} history={this.props.history}/>
+				<CoinMenu history={this.props.history}/>
 				<div className="Detail-coin">
 					<div className='FullName'>{snap.name}</div>
 					<div className='Symbol'>{snap.symbol_full}</div>
