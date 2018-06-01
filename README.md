@@ -5,6 +5,7 @@
 - Express.js
 - React.js
 - Redux.js
+- React Router
 
 ### [Web Scraping](#web-scraping-1)
 - Selenium
@@ -18,7 +19,8 @@
 ### [Hosting Environment](#hosting-environment-1)
 - Linode
 - Arch Linux
-- Security
+- Security / Server Hardening
+- Domain Name Registration
 
 ## JavaScript Frameworks
 ### [Node.js](https://www.nodejs.org)
@@ -28,10 +30,14 @@
 `Express.js` is a minimalist Node.js framework for web applications. It is used here for serving JSON objects at the API endpoints.
 
 ### [React.js](https://www.reactjs.org)
-`React.js` is a JavaScript library for creating responsive user interfaces. Built atop the Node package system, React implements a design paradigm of discrete so-called 'compositable components' to streamline development of elegant web applications that avoid the pitfalls of unwieldy, monolithic and tightly-coupled codebases that rapidly become unmanageable. React also avails the `JSX syntax`, which conveniently resembles the structure of HTML while allowing developers to eschew the syntactic verbosity of plain JavaScript.
+`React.js` is a JavaScript library for creating responsive user interfaces. Built atop the Node package system, React implements a design paradigm of discrete so-called 'compositable components' to streamline development of elegant web applications that avoid the pitfalls of unwieldy, monolithic and tightly-coupled codebases that rapidly become unmanageable. React also avails the `JSX syntax`, which conveniently resembles the structure of HTML while allowing developers to eschew the syntactic verbosity of vanilla JavaScript.
 
 ### [Redux.js](https://redux.js.org)
 The `Redux.js` JavaScript library is a state management engine that works exceptionally well with React.js to create an immutable model of what is viewed in the web browser.  Using react-redux state/property mappings and redux connect to dispatch actions, I was about to create navigation features that are wired up with triggers so that a change in my navigation box is reflected instantly with a new page view and uniformly throughout my application state model.
+
+### [React Router](https://reacttraining.com/react-router)
+`React Router` is a Node package that implements navigation components and routing through a declarative programming model.
+Using parameters from the URL path rather than Global State Data greatly simplified navigation, and has the additional benefit of creating a unique URL route for every point in the dataset.
 
 ## Web Scraping
 ### [Selenium](https://www.seleniumhq.org)
@@ -74,5 +80,9 @@ Although this is an extensive topic, the basic considerations in this project we
 - Enforcing RSA-key authentication regime for SSH access.
 - Disable and remove unnecessary daemons and services that listen actively on net ports.
 - Configure iptables or other firewall tolerate only a narrow range of essential net traffic.
-- Use fail2ban or another intrusion prevention system to neutralize attackers after repeated failed attempts at login.
+- Use fail2ban to lock out attackers after repeated failed attempts at login.
 - ALWAYS keep software up to date with the latest security patches.
+
+### Domain Name Registration
+I registered the domain name yzfinance.org through the DNS registration service at [1and1.com](http://www.1and1.com)
+Considerations were the cheap availability of a `.org` TLD for only $3.99, and that the 1&1 service allows for using Linode's own DNS Name Servers.
