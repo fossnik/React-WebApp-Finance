@@ -162,6 +162,12 @@ article {
 	text-align: center;
 	padding: 20px;
 }
+
+.Header-subtitle {
+	font-size: medium !important;
+	color: hotpink;
+}
+
 .FullName {
 	font-size: xx-large;
 	margin-top: 20px;

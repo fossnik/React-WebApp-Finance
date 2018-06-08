@@ -33,7 +33,10 @@ class SnapshotIndex extends Component {
 					<table className="Table">
 						<thead className="Table-head">
 						<tr>
-							<th className="Row-header-coin" colSpan='2'>{coinFullName}</th>
+							<th className="Row-header-coin" colSpan='2'>
+								{coinFullName}
+								<div className="Header-subtitle">{this.props.match.params.coin}</div>
+							</th>
 						</tr>
 						<tr>
 							<th>Selenium Web Scrape</th>
