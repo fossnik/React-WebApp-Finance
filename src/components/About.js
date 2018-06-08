@@ -12,7 +12,7 @@ const About = () =>
 
 			<div className="About-contents">
 				<div className="About-contents-box">
-					<h3><a href="#javascript-frameworks">Node.js JavaScript Frameworks</a></h3>
+					<h3><a href="#javascript-frameworks">Node.js Frameworks</a></h3>
 					<li>Express.js</li>
 					<li>React.js</li>
 					<li>Redux.js</li>
@@ -23,6 +23,7 @@ const About = () =>
 					<h3><a href="#web-scraping">Web Scraping</a></h3>
 					<li>Selenium</li>
 					<li>Yahoo Finance</li>
+					<li>WebDriver</li>
 				</div>
 
 				<div className="About-contents-box">
@@ -78,16 +79,32 @@ const About = () =>
 
 			<article>
 				<h2 id="web-scraping">Web Scraping</h2>
-				<h3><a href="https://www.seleniumhq.org">Selenium</a></h3>
-				<p>
-					The actual web-scraping is achieved with the <code>Selenium</code> web browser automation framework, which makes it possible to interact with (and retrieve data from) web resources through various programmatic methods.
-					A scraper I created in Java to fetch data from the dynamic contents of the Yahoo Finance page is available in this <a href="https://www.github.com/fossnik/SeleniumScraper">separate web-scraper project</a>, which implements the Chrome WebDriver.
-				</p>
-
 				<h3><a href="https://finance.yahoo.com/cryptocurrencies">YahooFinance</a></h3>
 				<p>
 					<code>Yahoo! Finance</code> is a free web resource and financial portfolio service from which the contents of the SQLite database are derived. It is public and reliable, although the implementation has tended to mutate on occasion.
 					<code>finance.yahoo.com/cryptocurrencies</code>
+				</p>
+
+				<h3><a href="https://www.seleniumhq.org">Selenium</a></h3>
+				<p>
+					The actual web-scraping is achieved with the <code>Selenium</code> web browser automation framework, which makes it possible to interact with (and retrieve data from) web resources through various programmatic methods.
+					A scraper I created in Java to fetch data from the dynamic contents of the Yahoo Finance page is available in this <a href="https://www.github.com/fossnik/SeleniumScraper">separate web-scraper project</a>, which implements the Chrome WebDriver.
+					The Scraper runs autonomously as a Cron process on my Linode, committing market snapshots to my SQL database.
+				</p>
+
+				<h3><a href="https://sites.google.com/a/chromium.org/chromedriver">Chrome WebDriver</a></h3>
+				<p>
+					Selenium's <code>WebDriver Wire Protocol</code> is an API that facilitates the exchange of information between a web browser client (implementations for the WebDriver interface exist for Chrome, Firefox, Safari and others)
+					Although I generally prefer to use Firefox, in this case I decided to use the Chrome WebDriver over the Gecko WebDriver under the impression that it is more actively supported.
+				</p>
+
+				<h3><a href="https://sites.google.com/a/chromium.org">Chromium</a></h3>
+				<p>
+					<code>Chromium</code> is the open-source web browser development project from whence "Google Chrome" is actively derived.
+					In other words, Chromium is the unbranded version of Google Chrome, and for Arch Linux, the only available option.
+					Getting Chrome WebDriver to work with Chromium required creating a symbolic filesystem link between where the Chromium binary is and where Selenium expects "Google Chrome" to be - essentially creating a pseudo file that can be executed as if it were "Google Chrome".
+					Installing Chromium was particularly painful because, clocking in at over 700 MiB, it takes a massive bite out of what little overhead is left in on my 4 GiB filesystem.
+					It is generally a poor idea to use such a minute filesystem, I felt it demonstrated the minimalist ethic of this project.
 				</p>
 			</article>
 

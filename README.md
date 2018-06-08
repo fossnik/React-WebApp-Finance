@@ -8,8 +8,10 @@
 - React Router
 
 ### [Web Scraping](#web-scraping-1)
-- Selenium
 - Yahoo Finance
+- Selenium
+- Chrome WebDriver
+- Chromium
 
 ### [Database](#database-1)
 - SQLite
@@ -40,12 +42,24 @@ The `Redux.js` JavaScript library is a state management engine that works except
 Using parameters from the URL path rather than Global State Data greatly simplified navigation, and has the additional benefit of creating a unique URL route for every point in the dataset.
 
 ## Web Scraping
+### [YahooFinance](https://finance.yahoo.com)
+`Yahoo! Finance` is a free web resource and financial portfolio service from which the contents of the SQLite database are derived. It is public and reliable, although the implementation has tended to mutate on occasion. `finance.yahoo.com/cryptocurrencies`
+
 ### [Selenium](https://www.seleniumhq.org)
 The actual web-scraping is achieved with the <code>Selenium</code> web browser automation framework, which makes it possible to interact with (and retrieve data from) web resources through various programmatic methods.
 A scraper I created in Java to fetch data from the dynamic contents of the [yahoo finance](https://finance.yahoo.com/cryptocurrencies) page is available in this [separate web-scraper project](https://www.github.com/fossnik/SeleniumScraper), which implements the Chrome WebDriver.
+The Scraper runs autonomously as a Cron process on my Linode, committing market snapshots to my SQL database.
 
-### [YahooFinance](finance.yahoo.com)
-`Yahoo! Finance` is a free web resource and financial portfolio service from which the contents of the SQLite database are derived. It is public and reliable, although the implementation has tended to mutate on occasion. `finance.yahoo.com/cryptocurrencies`
+### [Chrome WebDriver](https://sites.google.com/a/chromium.org/chromedriver)
+Selenium's `WebDriver Wire Protocol` is an API that facilitates the exchange of information between a web browser client (implementations for the WebDriver interface exist for Chrome, Firefox, Safari and others)
+Although I generally prefer to use Firefox, in this case I decided to use the Chrome WebDriver over the Gecko WebDriver under the impression that it is more actively supported.
+
+### [Chromium](https://sites.google.com/a/chromium.org)
+Chromium is the open-source web browser development project from which "Google Chrome" is actively derived.
+In other words, Chromium is the unbranded version of Google Chrome, and for Arch Linux, the only available option.
+Getting Chrome WebDriver to work with Chromium required creating a symbolic filesystem link between where the Chromium binary is and where Selenium expects "Google Chrome" to be - essentially creating a pseudo file that can be executed as if it were "Google Chrome".
+Installing Chromium was particularly painful because, clocking in at over 700 MiB, it takes a massive bite out of what little overhead is left in on my 4 GiB filesystem.
+It is generally a poor idea to use such a minute filesystem, I felt it demonstrated the minimalist ethic of this project.
 
 ## Database
 ### [SQLite](https://www.sqlite.org)
