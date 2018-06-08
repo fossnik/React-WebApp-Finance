@@ -10,7 +10,7 @@
 ### [Web Scraping](#web-scraping-1)
 - Yahoo Finance
 - Selenium
-- Chrome WebDriver
+- WebDriver API
 - Chromium
 
 ### [Database](#database-1)

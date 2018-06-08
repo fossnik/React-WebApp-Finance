@@ -23,7 +23,8 @@ const About = () =>
 					<h3><a href="#web-scraping">Web Scraping</a></h3>
 					<li>Selenium</li>
 					<li>Yahoo Finance</li>
-					<li>WebDriver</li>
+					<li>WebDriver API</li>
+					<li>Chromium</li>
 				</div>
 
 				<div className="About-contents-box">
