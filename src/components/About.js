@@ -104,8 +104,8 @@ const About = () =>
 					<code>Chromium</code> is the open-source web browser development project from whence "Google Chrome" is actively derived.
 					In other words, Chromium is the unbranded version of Google Chrome, and for Arch Linux, the only available option.
 					Getting Chrome WebDriver to work with Chromium required creating a symbolic filesystem link between where the Chromium binary is and where Selenium expects "Google Chrome" to be - essentially creating a pseudo file that can be executed as if it were "Google Chrome".
-					Installing Chromium was particularly painful because, clocking in at over 700 MiB, it takes a massive bite out of what little overhead is left in on my 4 GiB filesystem.
-					It is generally a poor idea to use such a minute filesystem, I felt it demonstrated the minimalist ethic of this project.
+					Installing Chromium was particularly painful because, clocking in at over 700 MiB, it takes a massive bite out of what little overhead is left in my 4 GiB filesystem.
+					It is generally a poor idea to use such a minute volume size, I felt it demonstrated the minimalist ethic of this project.
 				</p>
 			</article>
 
@@ -154,7 +154,7 @@ const About = () =>
 
 				<h3>Security / System Hardening</h3>
 				<p>
-					Server hardening and other security considerations are extremely important when s a hosting environment.
+					Server hardening and other security considerations are extremely important when constructing a hosting environment.
 					Although this is an extensive topic, the basic considerations in this project were:
 					<li>Creating a non-root user account with restricted privileges and using sudo as a matter of course.</li>
 					<li>Disabling remote log-in to the root account.</li>

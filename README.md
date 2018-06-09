@@ -58,8 +58,8 @@ Although I generally prefer to use Firefox, in this case I decided to use the Ch
 Chromium is the open-source web browser development project from which "Google Chrome" is actively derived.
 In other words, Chromium is the unbranded version of Google Chrome, and for Arch Linux, the only available option.
 Getting Chrome WebDriver to work with Chromium required creating a symbolic filesystem link between where the Chromium binary is and where Selenium expects "Google Chrome" to be - essentially creating a pseudo file that can be executed as if it were "Google Chrome".
-Installing Chromium was particularly painful because, clocking in at over 700 MiB, it takes a massive bite out of what little overhead is left in on my 4 GiB filesystem.
-It is generally a poor idea to use such a minute filesystem, I felt it demonstrated the minimalist ethic of this project.
+Installing Chromium was particularly painful because, clocking in at over 700 MiB, it takes a massive bite out of what little overhead is left in my 4 GiB filesystem.
+It is generally a poor idea to use such a minute volume size, I felt it demonstrated the minimalist ethic of this project.
 
 ## Database
 ### [SQLite](https://www.sqlite.org)
@@ -84,10 +84,12 @@ The least expensive service tier appears more than sufficient.
 
 ### [Arch Linux](https://www.archlinux.org)
 I used Arch for my Linode container because it is a minimalist-oriented GNU/Linux distribution with a robust support community (and superb documentation).
-Arch Linux insists on early support of the most bleeding-edge new kernels and packages. This made it necessary to utilize Node's [npm n](https://www.npmjs.com/package/n) version management package to ensure compatibility with all the required packages of this project. In particular, the `node-sqlite3` package does not yet provide binaries ready for `Node.js (version 10.0)` (provided by the Arch Linux package repository). `n` allows for convenient access to the better-supported `Node.js (version 9.11.1)`.
+Arch Linux insists on early support of the most bleeding-edge new kernels and packages. This made it necessary to utilize Node's [npm n](https://www.npmjs.com/package/n) version management package to ensure compatibility with all the required packages of this project.
+In particular, the `node-sqlite3` package does not yet provide binaries ready for `Node.js (version 10.0)` (provided by the Arch Linux package repository).
+ ` n` allows for convenient access to the better-supported `Node.js (version 9.11.1)`.
 
 ### Security
-Server hardening and other security considerations are extremely important when crafting a hosting environment.
+Server hardening and other security considerations are extremely important when constructing a hosting environment.
 Although this is an extensive topic, the basic considerations in this project were:
 - Creating a non-root user account with restricted privileges and using sudo as a matter of course.
 - Disabling remote log-in to the root account.
