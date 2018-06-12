@@ -11,8 +11,6 @@ class SnapshotDetail extends Component {
 	}
 
 	componentDidMount() {
-		this.props.fetchSnapshotDetail(this.props.match.params);
-
 		// load scrapeDates index if not exist
 		if (Object.keys(this.props.allSnapshots).length === 0 || !Object.keys(this.props.allSnapshots.scrapeDates).includes(this.props.match.params.coin))
 			this.props.fetchListOfSnapshotsForSingleCoin(this.props.match.params.coin);
@@ -103,6 +101,7 @@ class SnapshotDetail extends Component {
 			</div>
 		}
 
+		this.props.fetchSnapshotDetail(this.props.match.params);
 		return <div className='Loading'>Loading Detail View...</div>
 	}
 }
