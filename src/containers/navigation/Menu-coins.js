@@ -30,7 +30,7 @@ class MenuCoins extends Component {
 					{
 						this.props.coins.map(coin =>
 							<option key={coin.symbol_safe} value={coin.symbol_safe}>
-								{coin.name}
+								[{coin.symbol_full}] {coin.name}
 							</option>)
 					}
 				</select>
